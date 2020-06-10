@@ -26,7 +26,7 @@ SECRET_KEY = '5o(7c&&qq%sh1h!5s%$vcyy#ct^2@=st#2n#sff+#&doa!e-v^'
 DEBUG = True
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['future-academy.herokuapp.com',]
 
 
 # Application definition
