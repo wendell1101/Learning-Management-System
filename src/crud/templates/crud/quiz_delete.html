@@ -1,0 +1,73 @@
+{% extends 'system/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content%}
+    <div class="row ">  
+        <div class="col-md-3 mr-3 mb-3 p-2 pt-3 ml-4 sidebar">
+            {% include 'crud/sidebar.html' %}
+        </div>
+
+        <div class="col-md-8 section-container">
+            <h3>Are you sure you want to delete {{quiz}} ?</h3> 
+            <h5 class="text-warning">Summary</h5>
+            <span class="text-muted">Quiz title: {{quiz}}</span><br>
+        {% if question %}
+            <span class="text-muted">Questions</span><br>
+        {%endif%}
+        {%if question %}
+        {%for question in question%}
+                <div class="row ">
+               
+                <div class="col">
+                    <a href="#" class="text-muted">*{{question.text}}</a><br> 
+                </div>
+                    
+                    </div>
+                    
+                    <div class="row">
+                {% if question.choice_one and question.choice_two%}
+                            <div class="col">
+                                <span class="text-muted"> a.) {{question.choice_one}}<br></span>
+                                <span class="text-muted">b.) {{question.choice_two}}<br></span>                                 
+                            </div>
+                
+                        <div class="col">
+                            {% if question.choice_three %}
+                                <span class="text-muted">c.) {{question.choice_three}}</span><br>
+                            {%endif%}                       
+                            {% if question.choice_four%}
+                                <span class="text-muted">d.) {{question.choice_four}}</span>
+                            {%endif%}                       
+                        
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <span class="text-muted">answer: ({{question.correct_answer}})</span> 
+                        </div>
+                    </div>
+            {%else%}
+                <span class="text-muted">No Choices Yet</span>
+            {% endif %}
+           
+               
+        {%endfor%}
+        {%else%}
+            No Questions Yet
+        {%endif%} 
+               
+            <form method="POST">
+                {%csrf_token%}
+                              
+                <div>
+                    <button type="submit" class="btn btn-danger text-white">Delete</button>
+                    <a href="{%url 'quiz-list' class_id%}" class="btn btn-secondary" data-dismiss="modal">Cancel</a>
+                </div>
+            </form>   
+             
+        </div>
+    </div>
+    
+     
+{% endblock content%}

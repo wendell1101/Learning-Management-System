@@ -1,0 +1,25 @@
+{% extends 'system/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content%}
+
+  <div class="row">
+    <div class="col-md-3 p-2 pt-3 ml-4 sidebar">
+      {% if user.is_authenticated%}
+       {% include 'system/sidebar_profile.html'%}  
+      {%endif%}
+    </div>
+      
+
+ 
+    <div class="col-md-8 ml-3 bg-white">
+      {% include 'users/profile_classes.html'%}
+    </div>
+  </div>
+  
+
+
+
+     
+{% endblock content%}

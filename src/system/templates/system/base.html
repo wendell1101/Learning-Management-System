@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'system/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'system/css/sidebar.css' %}">
+    <link rel="stylesheet" href="{% static 'system/css/footer.css' %}">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    <!-- XDSoft DateTimePicker -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" integrity="sha256-DOS9W6NR+NFe1fUhEE0PGKY/fubbUCnOfTje2JMDw3Y=" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha256-FEqEelWI3WouFOo2VWP/uJfs1y8KJ++FLh2Lbqc8SJk=" crossorigin="anonymous"></script>
+
+    
+    <title>Learning Management System</title>
+</head>
+<body> 
+    <nav class="navbar navbar-dark bg-dark navbar-expand-sm mb-3" >
+        <div class="container">
+            <a href="{% url 'index'%}" class="navbar-brand  logo">Future Academy</a>
+            <button type="submit" class="navbar-toggler" data-toggle="collapse" data-target="#navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navigation">
+                <ul class="navbar-nav ml-auto mr-3">
+                    {% if user.is_authenticated %}  
+                        {% if user.is_staff%}
+                            <li class="nav-item "><a href="{% url 'index' %}" class="nav-link">Teacher</a></li>
+                        {% else %}
+                            <li class="nav-item "><a href="{% url 'index' %}" class="nav-link">Student</a></li>
+                        {% endif %}
+                        <li class="nav-item active"><a href="{% url 'index' %}" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+                       <li class="nav-item dropdown">
+                           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                Account
+                            </a>
+                            <div class="dropdown-menu drop">
+                            <a class="dropdown-item list" href="{%url 'profile'%}">View Profile</a>
+                            {% if user.is_authenticated == user.is_superuser%}
+                                <a class="dropdown-item list" href="admin/">Go To Admin</a>
+                            {% endif %}
+                            <a class="dropdown-item list" href="{% url 'logout' %}">Logout</a>
+                            </div>
+                        </li>
+                      
+                      
+                    {% else %} 
+                        <li class="nav-item "><a href="{% url 'login'%}" class="nav-link" id="login">Login</a></li>
+                        <li class="nav-item dropdown mr-5">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            Register
+                            </a>
+                            <div class="dropdown-menu drop">
+                            <a class="dropdown-item list" href="{% url 'teacher-register'%}">Teacher</a>
+                                <a class="dropdown-item list" href="{% url 'student-register'%}">Student</a>
+                            </div>
+                        </li>                 
+                    {% endif %} 
+                </ul>   
+            </div>
+        </div>       
+    </nav>
+    {% if user.is_authenticated %}  
+        
+            {% comment %} <header class="p-2 bg-dark d-flex align-items-center mb-2">
+                <h3 class="text-warning pl-5">Dashboard</h3>
+            </header> {% endcomment %}
+       
+        
+    {% endif %}
+    {% if user.is_authenticated %}
+        <!-- <div class="container-fluid"> -->
+        <div class="p-2">
+    {% else %}
+        <div class="container">
+    {% endif %}
+            {% block content %}{% endblock content %}
+        </div>
+        <!-- <input id="datetimepicker" type="text"> -->
+
+  <script>
+    $(function () {
+      $("#datetimepicker").datetimepicker();
+    });
+  </script>
+ 
+    <script src="{% static 'system/js/main.js' %}"></script>
+ 
+   
+        {% include 'system/footer.html' %}
+   
+   
+
+</body>
+</html>

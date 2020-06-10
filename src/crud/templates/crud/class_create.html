@@ -1,0 +1,24 @@
+{% extends 'system/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content%}
+    <div class="row ">  
+        <div class="col-md-3 mr-3 mb-3 p-2 pt-3 ml-4 sidebar">
+            {% include 'crud/sidebar.html' %}
+        </div>
+
+        <div class="col-md-8 section-container">
+            <h2>Add Class</h2>
+            <form method="POST">
+                {%csrf_token%}
+                {{form | crispy}}
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-warning text-light ">Create</button>
+                    <a href="{%url 'administration'%}" class="btn btn-secondary" data-dismiss="modal">Cancel</a>
+                </div>
+            </form>    
+        </div>
+    </div>
+    
+     
+{% endblock content%}

@@ -1,0 +1,70 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'system/css/main.css' %}">
+
+    <nav id="sidebar" class="sidebar-wrapper">
+        <div class="row">
+            <div class="col-md-12 d-flex justify-content-center">
+                <div class="profile-image-container">
+                     <img src="{{user.profile.profile_image.url}}">
+                </div>
+               
+            </div>
+            <div class="col mt-4">
+                
+                <div class="row">
+                    <div class="col">
+                        <h4 class="text-center ml-2 text-warning font-weight-bold" style="text-transform:uppercase">
+                            {{user.first_name}} {{user.last_name}}
+                        </h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col d-flex justify-content-center">
+                        <a href="{% url 'profile-update' user.id%}"class="btn btn-secondary text-white edit-profile-btn">
+                            Edit Profile
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col d-flex justify-content-center">
+                        <div class="bg-dark text-white mb-2 text-center bio-container">
+                            {%if user.profile.bio%}
+                                <span>{{user.profile.bio}}</span>
+                             {%else%}
+                                <span>No Bio Yet</span>
+                             {%endif%}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-3">
+                        <span>Username: </span>  
+                    </div>
+                    <div class="col">
+                          <p class=" ml-2 text-white">{{user.username}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <span>Email: </span>  
+                    </div>
+                    <div class="col">
+                        <p class=" ml-2 text-white">{{user.email}}</p>
+                    </div>
+                </div>
+               
+            
+                
+            </div>
+           
+        </div>
+        
+            
+        
+    </nav>
+
+
+    
+
+          

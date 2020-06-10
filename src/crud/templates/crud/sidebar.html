@@ -1,0 +1,71 @@
+
+<nav id="sidebar" class="sidebar-wrapper">
+    <div class="sidebar-content">
+    <div class="sidebar-brand">
+        <div id="close-sidebar">
+        <i class="fas fa-times"></i>
+        </div>
+    </div>
+    <div class="sidebar-search">
+        <div>
+        <div class="input-group">
+            <input type="text" class="form-control search-menu" placeholder="Search...">
+            <div class="input-group-append">
+            <span class="input-group-text">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </span>
+            </div>
+        </div>
+        </div>
+    </div>
+    <!-- sidebar-search  -->
+    <div class="sidebar-menu">
+        <ul>
+        <li class="header-menu">
+            <span>General</span>
+        </li>
+        </ul>
+    </div>
+    <!-- sidebar-content  -->
+    <ul class="list-group p-2">
+        <a href="{% url 'administration'%}" class="sidebar-title">
+            <li class="list-group-item mb-2 bg-secondary active ">
+                Classes
+            </li>
+        </a>
+        <li class="list-group-item mb-2 bg-secondary">
+        <a href="#"class="sidebar-title">Assignments</a>
+        </li>
+        <li class="list-group-item mb-2 bg-secondary">
+        <a href="#"class="sidebar-title">Quizzes</a>
+        </li>
+        <li class="list-group-item mb-2 bg-secondary">
+        <a href="#"class="sidebar-title">Schedules</a>
+        </li>
+        <li class="list-group-item mb-2 bg-secondary">
+        <a href="{% url 'index' %}"class="sidebar-title">Back To Home</a>
+        </li>
+    </ul>
+    <div class="row p-2">
+        <div class="col d-flex justify-content-center">
+        <div class="card card-body bg-secondary footer-side">
+            <div class="sidebar-footer">
+            <a href="#">
+                <i class="fa fa-facebook sidebar-icon mr-2"></i>                     
+            </a>
+            <a href="#">
+                <i class="fa fa-github sidebar-icon mr-2"></i>
+            </a>
+            <a href="#">
+                <i class="fa fa-youtube sidebar-icon mr-2"></i>                    
+            </a>
+            <a href="#">
+                <i class="fa fa-twitter sidebar-icon mr-2"></i>
+            </a>
+            </div>
+            
+        </div>
+        </div>
+    </div>
+    
+</nav>

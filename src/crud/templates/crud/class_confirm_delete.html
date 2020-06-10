@@ -1,0 +1,23 @@
+{% extends 'system/base.html' %}
+{% load static %}
+
+{% block content%}
+    <div class="row ">        
+        <div class="col-md-3 mr-3 mb-3 p-2 pt-3 ml-4  sidebar">
+            {% include 'crud/sidebar.html' %}
+        </div>   
+        <div class="col-md-8  pt-5 section-container">
+           <form method="POST">
+            <h2>Are you sure you want to delete class {{class}} ?</h2> 
+               {%csrf_token%}
+               <button type="submit" class="btn btn-danger">Delete</button>
+               <a href="{% url 'class-detail' class.id%}"class="btn btn-secondary">Cancel</a>
+           </form>
+           
+       
+        
+        </div>
+    </div>
+    
+     
+{% endblock content%}

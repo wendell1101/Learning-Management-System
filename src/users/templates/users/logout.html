@@ -1,0 +1,15 @@
+{% extends 'system/base.html' %}
+{% load crispy_forms_tags %}
+{% block content%}
+    <div class="row justify-content-center">
+        <div class="col-md-10 align-items-center card card-body" style="min-height:50vh">
+            
+                <h2>You have been logged out</h2>
+                <a href="{% url 'login' %}">Login Again</a>
+           
+           
+        </div>
+    </div>
+    
+{% endblock content%}     
+    

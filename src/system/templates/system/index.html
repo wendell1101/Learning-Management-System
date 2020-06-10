@@ -1,0 +1,113 @@
+{% extends 'system/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content%}
+
+  <div class="row ">
+    <div class="col-md-3  pt-3 ml-2 sidebar">
+      {% if user.is_authenticated%}
+        {% if user.is_staff%}
+            {% include 'crud/sidebar.html' %}
+        {%else%}
+            {% include 'system/student_sidebar.html'%}      
+        {%endif%}
+      {%endif%}
+    </div>
+    <div class="col-md-8 ">  
+      <div class="row">
+        <div class="col-2">
+          <a href="{% url 'create-post' %}" class="btn btn-dark text-white mb-3 border">
+            Create Post
+          </a>
+        </div>
+        <div class="col">
+          {% if messages%}
+          {%for message in messages%}
+              {%if message.tags == 'error'%}
+                  <p class="alert alert-danger align-items-center" style="height:20px">{{message}}</p>
+              {%else%}
+                  <p class="alert alert-success d-flex align-items-center jutify-content-center" style="height:20px!important">{{message}}</p>
+              {%endif%}
+          {%endfor%}
+        {%endif%}   
+        </div>
+        
+      </div>
+      
+      
+      <div class="row">
+        <div class="col">  
+               
+          {%if posts%}
+            {% for post in posts %}   
+              {%if post.classname in user_classname_list or post.classname in class_author%}                  
+                <div class="card card-body mb-2">
+                  <div class="row d-flex "style="flex-wrap:no-wrap">
+                    <div class="col" style="flex:1">
+                      <div style="width:100px; height:100px;">
+                        <img src="{{post.author.profile.profile_image.url}}" class="rounded-circle border"
+                        style="width:100%; height:100%">
+                      </div>
+                    </div>
+                    <div class="col"style="flex:10"> 
+                      <div class="row border-bottom">
+                        <div class="col">
+                          <p class="text-capitalize mt-3"> 
+                            <a href="#">{{post.author.first_name}} {{post.author.last_name}}</a> >  
+                            <a href="#">{{post.classname}}</a>
+                            <br>
+                            
+                            <small class="text-muted">{{post.date_posted}}</small>  
+                          </p>    
+                        </div>
+                        <div class="col-3">
+                            
+                            <li class="nav-item dropdown mr-5"style="list-style:none">
+                              {%if user == post.author%}
+                              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                <i class="fa fa-ellipsis-h text-secondary" id="post-option" style="cursor:pointer"></i>
+                              </a>
+                              <div class="dropdown-menu">
+                                <a class="dropdown-item border-bottom" href="{% url 'update-post' post.id%}">Edit</a>
+                                <a class="dropdown-item " href="{% url 'delete-post' post.id%}">Delete</a>                             
+                              </div>                             
+                            </li>
+                            {%endif%}
+                        </div>
+                      </div>                     
+                                                  
+                      <div class="row">
+                        <div class="col"style="z-index:1">
+                          <p class="text-lead">{{post.content}}</p> 
+                          {%if post.attachment%}
+                            <a href="{{post.attachment.url}}">{{post.attachment}}</a>
+                          {%endif%}
+                          {%if post.image%}
+                            <div class="border d-flex" style="width:700px;height:400px">
+                              <img src="{{post.image.url}}" style="width:100%; height:100%">
+                            </div>
+                          {%endif%}                         
+                        </div>                        
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>
+              {%endif%}
+              
+            {% endfor %}
+          {%else%}
+              <h4 class="text-muted">No Post Yet</h4>
+          {%endif%}
+         
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
+
+     
+{% endblock content%}

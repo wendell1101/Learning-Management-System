@@ -1,0 +1,73 @@
+{% extends 'system/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content%}
+    <div class="row ">        
+        <div class="col-md-3 mr-3 mb-3 p-2 pt-3 ml-4 sidebar">
+            {% include 'crud/sidebar.html' %}
+        </div>   
+        <div class="col-md-8   section-container">
+           
+           <ul class="list-group pt-3">
+                <li class="list-group-item mb-2 ">
+                    Class : {{class.title}}  
+                </li>
+                <li class="list-group-item mb-2">
+                    Subject : {{class.subject}}  
+                </li>
+                <li class="list-group-item mt-2">
+                    <div >
+                        <a href="{% url 'class-update' class.id%}" class="btn btn-warning text-light edit-btn">Edit</a>
+                        <a href="{% url 'class-delete' class.id%}" class="btn btn-danger">Delete</a>
+                    </div>
+                </li>
+           </ul>
+           <div class="row">
+               <div class="col">
+                <h3>Students Enrolled:</h3>
+                <div>
+                    {%if student %}
+                        {%for key,student in student%}
+                            <ul class="list-group">
+                                <div class="row">
+                                    <div class="col">
+                                        <li class="list-group mb-2"> 
+                                            <p class="text-muted">
+                                                {{key}}. {{student.first_name.capitalize}} {{student.last_name.capitalize}}
+                                            </p>
+                                        </li>
+                                    </div>
+                                </div>
+                            </ul>
+                            
+                        {%endfor%}
+                    {% else %}
+                        <h3>No students enrolled</h3>
+                    {%endif%}
+                </div>
+               </div>
+               <div class="col">
+                    <div class="row">
+                        <div class="col-md-3">
+                              Class Code :
+                        </div>
+                        <div class="col-md-6">
+                            <h5>{{class.class_code}}</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <a href="{% url 'quiz-list' class.id%}" class="text-warning"> Quizzes</a> | 
+                            <a href="#" class="text-warning"> Announcement</a>
+                        </div>
+                    </div>
+              
+               </div>
+           </div>
+            
+            
+        </div>
+    </div>
+    
+     
+{% endblock content%}

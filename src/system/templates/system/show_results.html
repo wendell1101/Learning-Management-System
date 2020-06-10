@@ -1,0 +1,82 @@
+{% extends 'system/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+{% block content%}
+    <div class="container bg-light pt-3" style="min-height:100vh">
+        <div class="row bg-dark text-white p-2 mb-2 ">   
+            <div class="col-6 text-capitalize">
+                Name: {{student.first_name}} {{student.last_name}}
+            </div>
+            <div class="col-6">
+                Quiz: {{quiz}}
+            </div>
+            <div class="col-6">
+                Class: {{class}}
+            </div>
+            <div class="col-6">
+                Subject: {{class}}
+            </div>
+        </div>
+        <button class=" text-white bg-secondary pl-1 pr-1 align-items-center justify-content-center">
+            <a href="{% url 'student-class-detail' class.id%}" class="text-white">
+                Back
+            </a>
+        </button>
+        <div class="col-10 card card-body" 
+            style="margin:0 auto; min-height:60vh">   
+            <div class="row mb-3">
+                <div class="col">
+                    <h3>Results Summary</h3>
+                    {% if percent >= 50 %}
+                       <p class="text-success"> You scored {{score}} / {{total_score}} - You Passed</p> 
+                    {%else%}
+                        <p class="text-danger"> You scored {{score}} / {{total_score}} - You Failed</p>
+                    {%endif%}
+                </div>
+                <div class="col">
+                    {% if percent >= 50 %}
+                        <div class="rounded-circle border border-success ml-auto text-white mr-3 percent-container">
+                            <h4 class="text-success">{{percent}} % </h4>
+                    {%else%}
+                        <div class="rounded-circle border border-danger text-danger ml-auto mr-3 percent-container">
+                            <h4 class="text-danger">{{percent}} % </h4>
+                    {%endif%}
+                        </div>
+                    
+                </div>
+            </div>
+                
+            
+
+            {%if user_answer%}
+                <ul class="list-group">
+                    {%for key,answer in user_answer%}
+                        {%if answer.answer.correct %}
+                            <li class="list-group-item bg-success text-light mb-1">
+                        {%else%}
+                            <li class="list-group-item bg-danger text-white mb-1 ">
+                        {%endif%}
+                            <div class="row align-items-center">
+                                <div class="col-5 text-capitalize ">
+                                    {{key}}. {{answer.question}}  
+                                </div>
+                                <div class="col text-capitalize align-items-center ">
+                                    <p>
+                                        <small class="text-white text-capitalize">Your Answer:  </small> 
+                                        <u class="ml-2">{{answer.answer}}</u>
+                                    </p>
+                                </div>
+                            </div>                     
+                             </li>
+                    {%endfor%}
+                </ul>
+            {%else%}
+                <h4>No Answers Available</h4>
+            {%endif%}
+        </div>
+    </div>
+    
+     
+{% endblock content%}
+

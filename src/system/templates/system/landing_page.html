@@ -1,0 +1,63 @@
+{% extends 'system/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="row ">
+        <div class="col-md-12 p-3 border-radius mb-2 bg-light d-flex align-items-center">
+            <h3>Grab your chance to win the new LENOVO T450</h3>
+            <a href="#" class="ml-3">More Details</a>
+        </div>
+    </div>
+    <div class="row mt-2 border-bottom mb-3 pb-5">
+        
+        <div class="col-md-6 pr-5"> 
+            <div class="img-container">
+                <img src="{% static 'system/images/educ_1.jpg'%}" alt="">
+            </div>
+            
+        </div>
+        <div class="col-md-6 pl-5 mb-3 d-flex align-items-center">
+            <div class="row">
+                <div class="col-md-12 mb-2 border-bottom">
+                    <h1>Let's Get Started</h1>
+                    <h2 class="lead">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae obcaecati, dolores adipisci quas fugit iste soluta eligendi amet veritatis veniam.
+                        
+                    </h2>
+                </div>
+                <div class="col-md-12 mb-2 ">
+                     <span class="text-info font-weight-normal lead ">Join Our Community</span>
+                </div>
+                <div class="col-md-12 d-flex justify-content-center">
+                    <a href="{% url 'teacher-register'%}"><button class="btn btn-warning text-white mr-2">Teacher</button></a>
+                    <a href="{% url 'student-register'%}"><button class="btn btn-secondary ml-2">Student</button></a>               
+                </div>
+                <div class="col-md-12 justify-content-center">
+                              
+                </div>
+               
+            </div>
+        </div>
+    </div>
+ 
+    <div class="row">
+         <div class="col-md-6 pr-5 d-flex align-items-center">
+             <div class="row">
+                 <div class="col-md-12 ">
+                    <h1>Study At Home</h1>
+                    <h2 class="lead">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae obcaecati, dolores adipisci quas fugit iste soluta eligendi amet veritatis veniam.
+                    <small class="ml-auto"style="margin-left:auto"></small>
+                    </h2>
+                 </div>
+             </div>
+            
+        </div>
+        <div class="col-md-6 pl-5">
+            <img src="{% static 'system/images/educ_2.jpg'%}" alt="">
+        </div>
+    </div>
+  
+     
+    <script src="{% static 'system/js/main.js' %}"></script>
+{% endblock content %}

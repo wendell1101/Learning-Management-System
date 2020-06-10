@@ -1,0 +1,73 @@
+{% extends 'system/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content%}
+    <div class="row ">  
+        <div class="col-md-3 mr-3 mb-3 p-2 pt-3 ml-4 sidebar">
+            {% include 'crud/sidebar.html' %}
+        </div>
+
+        <div class="col-md-8 section-container">
+           <h2> {{quiz.text}}</h2>
+            {%if messages%}
+                {%for message in messages%}
+                    <p class="alert alert-success">{{message}}</p>
+                {% endfor %}
+            {% endif %}
+           <p>Questions</p>
+            
+            {%if question_list %}
+                {%for key,question in question_list%}
+                    <ul class="list-group">
+                        <li class="list-group-item mb-2">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    {{key}}. {{question}}
+                                    <ol type="a">
+                                        {% for choice in question.choice_set.all%}
+                                            {%if choice.correct%}
+                                            <li><a href="{% url 'choice-detail' choice.id%}" class="text-success">{{choice}}</a></li>
+                                            {%else%}
+                                                <li><a href="{% url 'choice-detail' choice.id%}">{{choice}}</a></li>
+                                            {%endif%}
+                                            
+                                        {%endfor%} 
+                                    </ol>
+                                    <a href="{% url 'create-choice' question.id%}" 
+                                        class="text-white mr-3 bg-secondary pl-1 pr-1 align-items-center justify-content-center">
+                                        Add Choice
+                                    </a>
+                                                                                       
+                                </div>
+                                <div class="col">
+                                    <a href="{% url 'question-update' question.id%}"
+                                    class="bg-warning text-white pl-3 pr-3 align-items-center justify-content-center">Edit</a>
+                                <a href="{% url 'question-delete' question.id%}" 
+                                    class="bg-danger text-white pl-1 pr-1 align-items-center justify-content-center">Delete</a>
+                                </div>
+                               
+                            </div>
+                            
+                            
+                           
+                            
+                        </li>
+                    </ul>
+                {%endfor%}
+            {%else%}
+                <h4>No Question Yet</h4>
+            {%endif%}
+            <a href="{% url 'create-question' quiz.id %}" 
+                class="text-white mr-3 bg-warning pl-1 pr-1 align-items-center justify-content-center">
+                Add Question
+            </a>
+            <a href="{% url 'quiz-list' class_id %}" 
+                class="text-white mr-3 bg-secondary pl-1 pr-1 align-items-center justify-content-center">
+                Cancel
+            </a>
+      
+        </div>
+    </div>
+    
+     
+{% endblock content%}

@@ -1,0 +1,68 @@
+{% extends 'system/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+{% block content%}
+    <div class="container bg-light pt-3" style="min-height:100vh">
+        <div class="row bg-dark text-white p-2 mb-2 ">   
+            <div class="col-6">
+                Name: {{student.first_name}} {{student.last_name}}
+            </div>
+            <div class="col-6">
+                Quiz: {{quiz}}
+            </div>
+            <div class="col-6">
+                Class: {{class}}
+            </div>
+            <div class="col-6">
+                Subject: {{class}}
+            </div>
+        </div>
+        <button class=" text-white bg-secondary pl-1 pr-1 align-items-center justify-content-center">
+            <a href="{% url 'student-class-detail' class.id%}" class="text-white">
+                Back
+            </a>
+        </button>
+        <div class="col-10" style="margin: auto">
+          
+            {%if question %}
+                <form method="POST">
+                   {%csrf_token%}
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        {% for key,question in question %}
+                        <div class="row">
+                            <div class="col-12">
+                                {{key}}. <strong>{{question.text.capitalize}}</strong><br>
+                            </div>
+                            <div class="col pl-4">
+                                {% for choice in question.choice_set.all %}
+                                    <input type="radio" name="question-{{question.id}}" value = "{{choice.id}}" >{{choice}}<br>
+                                {%endfor%}
+                            </div>
+                        </div>
+                            
+                                
+                        {% endfor %}
+                    </li>
+                </ul>
+                   
+                    <button type="submit"
+                        class="text-white bg-warning pl-1 pr-1 align-items-center justify-content-center">
+                            Submit
+                    </button>
+                    <button class=" text-white bg-secondary pl-1 pr-1 align-items-center justify-content-center">
+                        <a href="{% url 'student-class-detail' class.id%}" class="text-white">
+                            Cancel
+                        </a>
+                    </button>
+                </form>
+            {%else%}
+                <h5>No Questions Available</h5>
+            {%endif%}
+           
+        </div>
+    </div>
+    
+     
+{% endblock content%}

@@ -1,0 +1,43 @@
+{% extends 'system/base2.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+
+
+{% block content%}
+    <div class="container bg-light pt-3" style="min-height:100vh">
+        <div class="row">           
+            <div class="col-12">
+              
+                <form method="POST" enctype="multipart/form-data">
+                    <div class="row justify-content-center">
+                        <div class="col-11" >
+                            {%csrf_token%}
+                            Classname: {{post.classname}}
+                            {% render_field form.classname style="display:none" %}
+                                {{form.content|as_crispy_field}}
+                            <div class="row">
+                                <div class="col">
+                                    File: {{form.attachment}}
+                                </div>
+                                <div class="col">
+                                    Image: {{form.image}}  
+                                </div>
+                            </div>                       
+                            <input type="hidden" name="author" value="{{request.user.id}}"required="" id="id_author"> 
+                        <button type="submit"class="bg-warning text-white pl-1 pr-1 align-items-center justify-content-center">Update</button>
+                        <button class="bg-secondary text-white pl-1 pr-1 align-items-center justify-content-center">
+                                <a href="{%url 'index' %}" class="text-white">
+                                Cancel</a>
+                        </button>
+                        </div>
+                    </div>
+                
+                </form>
+                
+            </div>
+        </div>
+    </div>
+
+
+{% endblock content%}

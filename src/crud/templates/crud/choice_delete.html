@@ -1,0 +1,39 @@
+{% extends 'system/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content%}
+    <div class="row ">  
+        <div class="col-md-3 mr-3 mb-3 p-2 pt-3 ml-4 sidebar">
+            {% include 'crud/sidebar.html' %}
+        </div>
+
+        <div class="col-md-8 section-container">
+            <form method="POST">
+                {%csrf_token%}
+                <h2>Are you sure you want to delete this choice ?</h2>                
+                <h5 class="text-warning">Summary</h5>
+                <div class="row ">
+                    <div class="col">
+                        <p class="text-muted">*{{question}}<br>
+                            *<b class="text-muted">{{choice}}</b>
+                        </p>
+                        
+                    </div>                   
+                </div>
+                
+               <div class="row">
+                    <div class="col">
+                        <input type="submit" class="bg-danger text-white pl-1 pr-1 align-items-center justify-content-center"value="Delete">
+                        <button class="bg-secondary text-white pl-1 pr-1 align-items-center justify-content-center">
+                            <a href="{% url 'choice-detail' choice.id%}" class="text-white">
+                            Cancel</a>
+                        </button>
+                    </div>                    
+                </div>
+            </form>    
+            
+        </div>
+    </div>
+    
+     
+{% endblock content%}

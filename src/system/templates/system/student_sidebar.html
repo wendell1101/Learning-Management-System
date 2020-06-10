@@ -1,0 +1,98 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'system/css/main.css' %}">
+
+    <nav id="sidebar" class="sidebar-wrapper">
+        <div class="row pl-3 pr-3">
+            <div class="col-12">                
+                <form method ="POST">
+                    {%csrf_token%}
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" name="code" class="form-control" placeholder="class code" required>
+                        </div>
+                        <div class="col-3">
+                            <button class="btn btn-warning text-white " type="submit">Enroll</button>
+                        </div>
+                    </div>
+                    
+                   
+                      
+                </form>
+                <div class="row">
+                    <div class="col-12"><h4 class="text-white mt-2">Your Class</h4></div>
+                    <div class="col-12">
+                        {% if class %}
+                            <ul class="list-group">
+                            {%for class in class%}
+                                <a href="{% url 'student-class-detail' class.id%}">
+                                    <li class="list-group-item mb-2 bg-warning text-white">
+                                    <div class="row align-items-center">
+                                        <div class="col-6">
+                                            <h4 class="text-white">{{class}}</h4> 
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    - Professor :
+                                                </div>
+                                                <div class="col-12">
+                                                    <span class="ml-2 text-white text-center">
+                                                        {{class.author.first_name}} {{class.author.last_name}}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                             
+                                        </div>
+                                    </div>
+                                </li></a>
+                            {%endfor%}
+                            </ul>
+                        {%else%}
+                            <span>Not Enrolled In A Class Yet</span>
+                        {%endif%}
+                    </div>
+                </div>
+            </div>
+           
+            <div class="col-12 mt-5">
+                <h5 class="text-white">Upcoming Events<h5>
+                {% if announcement%}
+                    {%for event in announcement %}
+                        <div class="row-6 bg-secondary">
+                            <div class="col-12">
+                                <div class="row mb-2">
+                                    <div class="col-3">
+                                        <span class="text-white">Event:</span>
+                                    </div>
+                                    <div class="col">
+                                          <span class="text-warning">*{{event.text}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <span class="text-white">On :</span>
+                                    </div>
+                                    <div class="col">
+                                          <span class="text-warning">*{{event.due}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                    {%endfor%}
+                {%else%}
+                    No Announcements Yet
+                {%endif%}
+            </div>
+        </div>
+        
+            
+        
+    </nav>
+
+
+    
+
+          

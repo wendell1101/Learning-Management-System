@@ -1,0 +1,52 @@
+{% extends 'system/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content%}
+    <div class="row ">  
+        <div class="col-md-3 mr-3 mb-3 p-2 pt-3 ml-4 sidebar">
+            {% include 'crud/sidebar.html' %}
+        </div>
+
+        <div class="col-md-8 section-container">
+           <h2> {{quiz}}</h2>
+           <h2> Quiz Results</h2>
+            {%if messages%}
+                {%for message in messages%}
+                    <p class="alert alert-success">{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        
+        {% if useranswer %}
+            <table class="table">
+                <tr class="border">                    
+                    <th class="border">Classname</th>
+                    <th class="border">Student</th>
+                    <th class="border">Quiz</th>
+                    <th class="border">Score</th>
+                    <th class="border">Status</th>
+                </tr>
+                {%for answer in useranswer%}
+                    <tr class="border">
+                        <td class="border">{{quiz.classname}}</td>
+                        <td class="border text-capitalize">{{answer.user.first_name}} {{answer.user.last_name}}</td>
+                        <td class="border">{{quiz}}</td>
+                        <td class="border">{{score}} / {{total_score}}</td>
+                        {%if percent >= 50%}
+                            <td class="border text-success">passed</td>
+                        {%else%}
+                            <td class="border text-danger">failed</td>
+                        {%endif%}
+                    </tr>                  
+                {%endfor%}
+            </table>
+            
+        {%else%}
+            <h5>No Results Yet</h5>
+        {%endif%}
+           
+            
+        </div>
+    </div>
+    
+     
+{% endblock content%}

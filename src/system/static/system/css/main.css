@@ -1,0 +1,227 @@
+body{
+    background:#f2f2f2;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden!important;
+}
+h1,h2,h3,h4,h5{
+    color:#6d6e6e!important;
+}
+a{
+    text-decoration: none!important;
+    /* color:#f4f4f4; */
+}
+header{
+    background:#f4f4f4;
+}
+.container-fluid{
+    width:95%!important;
+}
+.img-container{
+    width:100%;
+    height:100%;
+}
+.img-container img{
+    width:100%;
+    height:100%;
+}
+/* #navbar{
+    background:#ececec!important;
+} */
+.logo{
+    font-size:1.5rem;
+    font-weight:500;
+}
+#login-modal{
+    background:#fff;
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+    width:500px!important;
+    height:650px!important;
+    border:1px solid #6d6e6e;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    padding:1rem;
+    display:none;
+}
+#login-modal form{
+    width:100%;
+    height:100%
+}
+/* registerform */
+/* Users app */
+.register-form{
+    padding:1rem;
+    background:rgb(255, 253, 253)!important;
+    border-radius: 5px;
+}
+footer{    
+    bottom:0;
+    left:0;
+    margin-top:1rem;
+}
+/*Grid*/
+.choice-box{
+    font-size:1.5rem;
+    width:100%!important;
+    min-height:200px!important;
+ 
+    color:#f4f4f4;
+    text-decoration: none!important;
+}
+.choice-box:hover{
+    background:#535c68!important;
+    color:#f4f4f4;
+    text-decoration: none!important;
+}
+/*add course modal*/
+#add-course-modal{
+    width:600px;
+    height:700px;
+    background:#fff;
+    border: 1px solid black
+}
+/*Reminders*/
+.reminders{
+    width:100%;
+    background: #3a3f48;
+    box-shadow: 0px -1px 5px #282c33;
+    border-top: 1px solid #464a52;
+    height:80vh!important;
+    border: 1px solid rgb(223, 218, 218);
+    border-radius:5px;
+    color: #6c7b88;
+    color: #818896;
+    color: #b8bfce;
+}
+/*Section Container*/
+.section-container{
+    padding:1rem;
+    background:#fffefe;
+    border:1px solid #ffffff;
+}
+.social-media-icons{
+    margin-left:auto!important;
+}
+.social-media-icons a{
+    color:black!important;
+    font-size: 1.4rem;
+}
+
+.courses-list{
+    background:#faf9f9;
+}
+.courses-list li:nth-child(odd){
+    background:rgb(235, 235, 233);
+}
+.courses-list li:nth-child(even){
+    background:rgb(250, 250, 248);
+}
+.course-detail{
+    height:80vh;
+}
+.plus{
+    font-size:3rem;
+}
+
+/*Side bar*/
+.footer-side{
+    transform: translateY(80px);
+}
+.sidebar{
+    background: #3a3f48!important;
+    height:600px!important;
+    box-shadow: 0px -1px 5px #282c33;
+    border-top: 1px solid #464a52;
+    border: 1px solid rgb(223, 218, 218);
+    border-radius:5px;
+    color: #6c7b88;
+    color: #818896;
+    color: #b8bfce;
+}
+.sidebar-footer{
+    
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.sidebar-title{
+    color:#fff!important;
+}
+.sidebar-icon{
+    color: #ebeef0;
+    font-size:1.3rem;
+    background:rgb(66, 65, 65);
+    border-radius:30%;
+    width:40px;
+    height:30px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+/*Button style*/
+.edit-btn{
+    width:77.19px!important;
+   
+}
+/* Drop down*/
+.drop{
+    background: #343a40;
+    border:none;
+    transform: translate(0,-10px);
+}
+.list:hover{
+    background: #4b5258;
+}
+
+.drop a{
+    color:#f8f9fa!important;
+}
+/*student sidebar*/
+
+/*Profile*/
+.profile-image-container{
+    width: 200px;
+    height:180px;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    
+}
+.profile-image-container img{
+    width:100%;
+    height:100%;
+    border-radius:50%;
+    border:2px solid #ffc107;
+}
+.edit-profile-btn{
+    width:500px!important;
+}
+.bio-container{
+    background: #3a3f48!important;
+    border:1px solid rgb(172, 168, 168);
+    margin-top:1rem;
+    width:80%!important;
+    height:60px;
+    border-radius:5px;
+    display:flex;
+    align-items:center;
+    justify-content: center;
+}
+/*PERCENT SCORE*/
+.percent-container{
+    width: 100px;
+    height:100px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.show{
+    position:absolute;
+    display:block!important;    
+}
+button{
+    border:none!important
+}

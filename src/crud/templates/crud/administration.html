@@ -1,0 +1,50 @@
+{% extends 'system/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content%}
+    <div class="row ">
+          <div class="col-md-3 p-2 pt-3 ml-4 sidebar">
+            {% include 'crud/sidebar.html' %}
+          </div>
+          
+          <div class="col-md-8">
+              <h2>Classes</h2>
+            {%if messages%}
+                {%for message in messages%}
+                    <p class="alert alert-success">{{message}}</p>
+                {% endfor %}
+            {% endif %}
+
+            <div class="row ">
+              <div class="col-md-3  justify-content-center">
+                <a href="{% url 'class-create'%}">
+                  <button href="" class="card bg-warning mb-3 d-flex justify-content-center align-items-center choice-box">
+                    <i class="fa fa-plus plus"></i>
+                  </button>
+                </a>
+              </div>
+              
+              {% if class %}
+                {% for class in class %}
+                  <div class="col-md-3  justify-content-center">
+                    <a href="{% url 'class-detail' class.id%}">
+                      <button class="card bg-warning mb-3 d-flex justify-content-center align-items-center choice-box">
+                        <span class="bottom-title">{{class.title}}</span>
+                      </button>
+                    </a>
+                  </div>
+                {%endfor%}
+              {%else%}
+                   <h1 class="text-muted text-center">No Class Available Yet</h1>
+              {%endif%}
+            
+              
+             
+            </div>
+          </div>
+      
+        
+    </div>
+   
+     
+{% endblock content%}

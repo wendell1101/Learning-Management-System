@@ -1,0 +1,30 @@
+{% extends 'system/base.html' %}
+{% load crispy_forms_tags %}
+{% block content%}
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            {%if messages%}
+                {%for message in messages%}
+                    <p class="alert alert-success">{{message}}</p>
+                {% endfor %}
+            {% endif %}
+            <form method="POST" class="register-form">
+            <a href="#" class="btn btn-info">Login with Google</a>
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="border-bottom">
+                        <h3>Login Now</h3>
+                    </legend>
+                </fieldset>
+                    {{form | crispy}}
+                <div class="form-group">
+                    <span class="text-muted" >Not yet registered?</span> <a href="#">Register Here</a> 
+                    <button type="submit" class="btn btn-primary mt-3 form-control">Login</button>
+                </div>
+              
+            </form>  
+        </div>
+    </div>
+    
+{% endblock content%}     
+    

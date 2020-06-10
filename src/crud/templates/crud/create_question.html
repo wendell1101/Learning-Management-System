@@ -1,0 +1,32 @@
+{% extends 'system/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content%}
+    <div class="row ">  
+        <div class="col-md-3 mr-3 mb-3 p-2 pt-3 ml-4 sidebar">
+            {% include 'crud/sidebar.html' %}
+        </div>
+
+        <div class="col-md-8 section-container">
+           <span>Quiz:<span><h2> {{quiz}}</h2>
+            {%if messages%}
+                {%for message in messages%}
+                    <p class="alert alert-danger">{{message}}</p>
+                {% endfor %}
+            {% endif %}
+            <form method="POST">
+                {%csrf_token%}
+
+                {{question.text | as_crispy_field}}
+                
+               <button type="submit" class="text-white bg-warning pl-1 pr-1 align-items-center justify-content-center">Create</button>
+                <button class=" text-white bg-secondary pl-2 pr-2 
+                    align-items-center justify-content-center"><a href="{% url 'quiz-detail' quiz.id %}"class="text-white" >Cancel</a></button>
+               
+            </form> 
+          
+        </div>
+    </div>
+    
+     
+{% endblock content%}
