@@ -2,21 +2,21 @@
 {% load static %}
 
 {% block content %}
-    <div class="row ">
+    {% comment %} <div class="row ">
         <div class="col-md-12 p-3 border-radius mb-2 bg-light d-flex align-items-center">
             <h3>Grab your chance to win the new LENOVO T450</h3>
             <a href="#" class="ml-3">More Details</a>
         </div>
-    </div>
+    </div> {% endcomment %}
     <div class="row mt-2 border-bottom mb-3 pb-5">
         
-        <div class="col-md-6 pr-5"> 
+        <div class="col-md-6 front-container"> 
             <div class="img-container">
                 <img src="{% static 'system/images/educ_1.jpg'%}" alt="">
             </div>
             
         </div>
-        <div class="col-md-6 pl-5 mb-3 d-flex align-items-center">
+        <div class="col-md-6 pl-2 mb-3 d-flex align-items-center">
             <div class="row">
                 <div class="col-md-12 mb-2 border-bottom">
                     <h1>Let's Get Started</h1>
@@ -41,7 +41,7 @@
     </div>
  
     <div class="row">
-         <div class="col-md-6 pr-5 d-flex align-items-center">
+         <div class="col-md-6 pr-2 d-flex align-items-center">
              <div class="row">
                  <div class="col-md-12 ">
                     <h1>Study At Home</h1>
@@ -53,9 +53,13 @@
              </div>
             
         </div>
-        <div class="col-md-6 pl-5">
-            <img src="{% static 'system/images/educ_2.jpg'%}" alt="">
+        <div class="col-md-6"> 
+             <div class="img-container">
+                <img src="{% static 'system/images/educ_2.jpg'%}" alt="">
+            </div>
         </div>
+        
+        
     </div>
   
      

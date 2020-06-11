@@ -218,4 +218,12 @@ footer{
 button{
     border:none!important
 }
+/*media queries*/
+@media(max-width:1000px){
 
+}
+@media(min-width:900px){
+    .front-container{
+        grid-md
+    }
+}
