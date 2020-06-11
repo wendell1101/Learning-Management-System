@@ -1,7 +1,7 @@
 body{
     background:#f2f2f2;
     font-family: 'Poppins', sans-serif;
-    overflow-x: hidden!important;
+    overflow-x: hidden!important;    
 }
 h1,h2,h3,h4,h5{
     color:#6d6e6e!important;
@@ -24,9 +24,6 @@ header{
     width:100%;
     height:100%;
 }
-/* #navbar{
-    background:#ececec!important;
-} */
 .logo{
     font-size:1.5rem;
     font-weight:500;
@@ -57,6 +54,7 @@ header{
     background:rgb(255, 253, 253)!important;
     border-radius: 5px;
 }
+
 footer{    
     bottom:0;
     left:0;
@@ -76,7 +74,7 @@ footer{
     color:#f4f4f4;
     text-decoration: none!important;
 }
-/*add course modal*/
+
 #add-course-modal{
     width:600px;
     height:700px;
@@ -109,7 +107,6 @@ footer{
     color:black!important;
     font-size: 1.4rem;
 }
-
 .courses-list{
     background:#faf9f9;
 }
@@ -141,8 +138,7 @@ footer{
     color: #818896;
     color: #b8bfce;
 }
-.sidebar-footer{
-    
+.sidebar-footer{    
     display:flex;
     justify-content: center;
     align-items: center;
@@ -170,7 +166,7 @@ footer{
 .drop{
     background: #343a40;
     border:none;
-    transform: translate(0,-10px);
+  
 }
 .list:hover{
     background: #4b5258;
@@ -218,10 +214,8 @@ footer{
     justify-content: center;
     align-items: center;
 }
-.show{
-    position:absolute;
-    display:block!important;    
-}
+
 button{
     border:none!important
 }
+
