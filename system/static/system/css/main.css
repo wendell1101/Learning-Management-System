@@ -223,6 +223,7 @@ button{
     .post-image{
         width:100%!important;
         height:300px!important;
+        border:none!important;
     }
     .post-text{
         width:100%!important;
