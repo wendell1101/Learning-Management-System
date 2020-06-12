@@ -227,6 +227,9 @@ button{
     .post-text{
         width:100%!important;
     }
+    .post-file{
+        width:100%!important;
+    }
 } 
 /* @media(min-width:900px){
     .front-container{
