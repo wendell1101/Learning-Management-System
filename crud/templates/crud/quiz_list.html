@@ -2,51 +2,52 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block content%}
-    <div class="row ">  
-        <div class="col-md-3 mr-3 mb-3 p-2 pt-3 ml-4 sidebar">
+    <div class="row pl-2 justify-content-center">  
+        <div class="col-md-3 mb-3 p-2 pt-3 sidebar">
             {% include 'crud/sidebar.html' %}
         </div>
 
-        <div class="col-md-8 section-container">
-           <h2> Quizzes</h2>
-            {%if messages%}
-                {%for message in messages%}
-                    <p class="alert alert-success">{{message}}</p>
-                {% endfor %}
-            {% endif %}
-            {%if quiz_list %}
-                {%for quiz in quiz_list%}
-                    <ul class="list-group">
-                        <li class="list-group-item mb-2">
-                            <div class="row ">
-                                <div class="col">
-                                    <a href="{% url 'quiz-detail' quiz.id%}">{{quiz}}</a> 
+        <div class="col-md-9">
+            <div class="section-container">
+                <h2> Quizzes</h2>
+                {%if messages%}
+                    {%for message in messages%}
+                        <p class="alert alert-success">{{message}}</p>
+                    {% endfor %}
+                {% endif %}
+                {%if quiz_list %}
+                    {%for quiz in quiz_list%}
+                        <ul class="list-group">
+                            <li class="list-group-item mb-2">
+                                <div class="row ">
+                                    <div class="col">
+                                        <a href="{% url 'quiz-detail' quiz.id%}">{{quiz}}</a> 
+                                    </div>
+                                    <div class="col"> 
+                                    <a href="{% url 'quiz-results' quiz.id%}" class="bg-success text-white pl-1 pr-1 align-items-center justify-content-center">Results</a>
+                                        <a href="{% url 'quiz-update' quiz.id %}" class="bg-warning text-white pl-3 pr-3 align-items-center justify-content-center">Edit</a>
+                                        <a href="{% url 'quiz-delete' quiz.id%}" class="bg-danger text-white pl-1 pr-1 align-items-center justify-content-center">Delete</a>
+                                    
+                                    </div>
                                 </div>
-                                <div class="col"> 
-                                   <a href="{% url 'quiz-results' quiz.id%}" class="bg-success text-white pl-1 pr-1 align-items-center justify-content-center">Results</a>
-                                    <a href="{% url 'quiz-update' quiz.id %}" class="bg-warning text-white pl-3 pr-3 align-items-center justify-content-center">Edit</a>
-                                    <a href="{% url 'quiz-delete' quiz.id%}" class="bg-danger text-white pl-1 pr-1 align-items-center justify-content-center">Delete</a>
-                                 
-                                </div>
-                            </div>
-                        
                             
-                        </li>
-                    </ul>
-                {%endfor%}
-            {%else%}
-                <h4>No Quiz Available</h4>
-            {%endif%}
-            <div class="row mt-3">
-                <div class="col">
-                    <a href="{% url 'create-quiz' class_id%}" class="text-white bg-warning pl-1 pr-1
-                            align-items-center justify-content-center">Create</a>
-                    <a href="{% url 'class-detail' class_id %}" class=" text-white bg-secondary pl-2 pr-2 
-                        align-items-center justify-content-center">Cancel</a>
-                    
+                                
+                            </li>
+                        </ul>
+                    {%endfor%}
+                {%else%}
+                    <h4>No Quiz Available</h4>
+                {%endif%}
+                <div class="row mt-3">
+                    <div class="col">
+                        <a href="{% url 'create-quiz' class_id%}" class="text-white bg-warning pl-1 pr-1
+                                align-items-center justify-content-center">Create</a>
+                        <a href="{% url 'class-detail' class_id %}" class=" text-white bg-secondary pl-2 pr-2 
+                            align-items-center justify-content-center">Cancel</a>
+                        
+                    </div>
                 </div>
             </div>
-           
             
         </div>
     </div>

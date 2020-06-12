@@ -124,9 +124,9 @@ footer{
 }
 
 /*Side bar*/
-.footer-side{
+/* .footer-side{
     transform: translateY(80px);
-}
+} */
 .sidebar{
     background: #3a3f48!important;
     height:600px!important;
@@ -228,6 +228,9 @@ button{
     }
     .class-link{
         display:block;
+    }
+    .section-container{
+        margin-left:0!important;
     }
 }
 @media(max-width:768px){
