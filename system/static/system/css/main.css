@@ -218,8 +218,19 @@ footer{
 button{
     border:none!important
 }
+.class-link{
+    display:none;
+}
 /*media queries*/
-@media(max-width:720px){
+@media(max-width:800px){
+    .sidebar{
+        display:none;
+    }
+    .class-link{
+        display:block;
+    }
+}
+@media(max-width:768px){
     .post-image{
         width:100%!important;
         height:300px!important;
@@ -230,6 +241,9 @@ button{
     }
     .post-file{
         width:100%!important;
+    }
+    .sidebar{
+        display:none
     }
 } 
 /* @media(min-width:900px){

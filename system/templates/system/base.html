@@ -34,15 +34,20 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navigation">
-                <ul class="navbar-nav ml-auto mr-3">
+                <ul class="navbar-nav ml-auto mr-3 nav-menu">
+                    
                     {% if user.is_authenticated %}  
                         {% if user.is_staff%}
-                            <li class="nav-item "><a href="{% url 'index' %}" class="nav-link">Teacher</a></li>
+                            <li class="nav-item "><a class="nav-link">Teacher</a></li>
+                            <li class="nav-item"><a href="{% url 'administration'%}" class="nav-link class-link">Classes</a></li> 
                         {% else %}
-                            <li class="nav-item "><a href="{% url 'index' %}" class="nav-link">Student</a></li>
+                            <li class="nav-item "><a class="nav-link">Student</a></li>
+                            <li class="nav-item "><a href="#" class="nav-link">Classes</a></li>
                         {% endif %}
+                        
                         <li class="nav-item active"><a href="{% url 'index' %}" class="nav-link">Home</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">About</a></li>          
+                                     
                        <li class="nav-item dropdown">
                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                                 Account
