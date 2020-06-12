@@ -219,11 +219,17 @@ button{
     border:none!important
 }
 /*media queries*/
-@media(max-width:1000px){
-
-}
-@media(min-width:900px){
+@media(max-width:720px){
+    .post-image{
+        width:100%!important;
+        height:300px!important;
+    }
+    .post-text{
+        width:100%!important;
+    }
+} 
+/* @media(min-width:900px){
     .front-container{
         grid-md
     }
-}
+}  */

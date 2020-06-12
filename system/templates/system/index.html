@@ -44,13 +44,13 @@
               {%if post.classname in user_classname_list or post.classname in class_author%}                  
                 <div class="card card-body mb-2">
                   <div class="row d-flex "style="flex-wrap:no-wrap">
-                    <div class="col" style="flex:1">
+                    <div class="col profile-container" style="flex:1">
                       <div style="width:100px; height:100px;">
                         <img src="{{post.author.profile.profile_image.url}}" class="rounded-circle border"
                         style="width:100%; height:100%">
                       </div>
                     </div>
-                    <div class="col"style="flex:10"> 
+                    <div class="col post-container"style="flex:10"> 
                       <div class="row border-bottom">
                         <div class="col">
                           <p class="text-capitalize mt-3"> 
@@ -76,24 +76,28 @@
                             {%endif%}
                         </div>
                       </div>                     
-                                                  
-                      <div class="row">
-                        <div class="col"style="z-index:1">
-                          <p class="text-lead">{{post.content}}</p> 
-                          {%if post.attachment%}
-                            <a href="{{post.attachment.url}}">{{post.attachment}}</a>
-                          {%endif%}
-                          {%if post.image%}
-                            <div class="border d-flex" style="width:700px;height:400px">
-                              <img src="{{post.image.url}}" style="width:100%; height:100%">
-                            </div>
-                          {%endif%}                         
-                        </div>                        
-                      </div>
+                                            
+                      
                     </div>
                   </div>
-                  
+                   <div class="row">
+                          <div class="col"style="z-index:1">
+                            <div class="d-flex justify-content-center"style="width:100%">
+                              <p class="text-lead justify-content-center post-text" style="width:75%">{{post.content}}</p> 
+                            </div>
+                            
+                            {%if post.attachment%}
+                              <a href="{{post.attachment.url}}">{{post.attachment}}</a>
+                            {%endif%}
+                            {%if post.image%}
+                              <div class="d-flex justify-content-center" style="width:100%;height:400px">
+                                <img src="{{post.image.url}}" class="border post-image"style="width:75%; height:100%">
+                              </div>
+                            {%endif%}                         
+                          </div>                        
+                        </div>     
                 </div>
+                     
               {%endif%}
               
             {% endfor %}
