@@ -248,6 +248,12 @@ button{
     .sidebar{
         display:none
     }
+    .enroll-form{
+        display:block!important;
+    }
+    .class-list{
+        display:block!important;
+    }
 } 
 /* @media(min-width:900px){
     .front-container{

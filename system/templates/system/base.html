@@ -41,8 +41,52 @@
                             <li class="nav-item "><a class="nav-link">Teacher</a></li>
                             <li class="nav-item"><a href="{% url 'administration'%}" class="nav-link class-link">Classes</a></li> 
                         {% else %}
+                            <form method ="POST" class="mt-1 mb-2 enroll-form"style="display:none">
+                                {%csrf_token%}
+                                <div class="row">
+                                    <div class="col">
+                                        <input type="text" name="code" class="form-control" placeholder="class code" required>
+                                    </div>
+                                    <div class="col-3">
+                                        <button class="btn btn-warning text-white btn-md"style="width:80px!important" type="submit">Enroll</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="class-list"style="display:none">
+                                {% if class %}
+                                    {%for class in class%}
+                                        <a href="{% url 'student-class-detail' class.id%}">
+                                            <li class="list-group-item mb-2 bg-warning text-white">
+                                            <div class="row align-items-center">
+                                                <div class="col-6">
+                                                    <h4 class="text-white">{{class}}</h4> 
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            - Professor :
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <span class="ml-2 text-white text-center">
+                                                                {{class.author.first_name}} {{class.author.last_name}}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </li></a>
+                                    {%endfor%}
+                         
+                                {%else%}
+                                    <span>Not Enrolled In A Class Yet</span>
+                                {%endif%}
+                                <li class="nav-item "><a href="#" class="nav-link">View All Classes</a></li>
+                            </div>
+                            
                             <li class="nav-item "><a class="nav-link">Student</a></li>
-                            <li class="nav-item "><a href="#" class="nav-link">Classes</a></li>
+                         
+                            
                         {% endif %}
                         
                         <li class="nav-item active"><a href="{% url 'index' %}" class="nav-link">Home</a></li>

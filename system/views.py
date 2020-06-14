@@ -33,7 +33,7 @@ def index(request):
     
     
     if request.method == 'POST':
-        class_code = request.POST.get('code')          
+        class_code = request.POST.get('code') 
         classname = ClassName.objects.get(class_code = class_code)
         if classname:
             student = request.user
