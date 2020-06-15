@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from crud.models import ClassName,Announcement,Quiz,Question,UserAnswer
+from crud.models import *
 from django.db import transaction
 from django.core.exceptions import PermissionDenied, SuspiciousOperation
 from users.forms import ClassCode
@@ -30,7 +30,7 @@ def index(request):
     page_obj = paginator.get_page(page_number)
  
     announcement = Announcement.objects.filter(classname__student = student)
-    
+    print(user_classname)
     
     if request.method == 'POST':
         class_code = request.POST.get('code') 
@@ -41,7 +41,7 @@ def index(request):
             messages.success(request,f'You are now enrolled in class {classname}')
             return redirect('index')
         else:
-            messages.error(request,f'Class code in invalid')
+            messages.error(request,f'Class code is invalid')
             return redirect('index')
 
     context = {
@@ -55,11 +55,30 @@ def index(request):
         'page_obj': page_obj
     }
     return render(request,'system/index.html',context)
+   
+def student_class_list(request):
+    student = request.user
+    class_list = ClassName.objects.filter(student = request.user)
+   
+    # print(class_list)
+    student_classes = student.classname_set.all()
+    context={
+        'class_list':class_list,
+    }
+    return render(request,'system/student_class_list.html',context)
+
+
+
+
+
+
+
 
 
 def landing_page(request):
  
     return render(request,'system/landing_page.html')
+   
 
 @login_required
 def student_class_detail(request,class_id):

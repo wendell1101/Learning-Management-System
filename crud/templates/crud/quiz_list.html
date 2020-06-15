@@ -24,8 +24,9 @@
                                         <a href="{% url 'quiz-detail' quiz.id%}">{{quiz}}</a> 
                                     </div>
                                     <div class="col"> 
-                                    <a href="{% url 'quiz-results' quiz.id%}" class="bg-success text-white pl-1 pr-1 align-items-center justify-content-center">Results</a>
-                                        <a href="{% url 'quiz-update' quiz.id %}" class="bg-warning text-white pl-3 pr-3 align-items-center justify-content-center">Edit</a>
+                                        <a href="{% url 'quiz-detail' quiz.id%}" class="bg-warning text-white pl-1 pr-1 align-items-center justify-content-center">View Detail</a>
+                                        <a href="{% url 'quiz-results' quiz.id%}" class="bg-success text-white pl-1 pr-1 align-items-center justify-content-center">Results</a>
+                                        <a href="{% url 'quiz-update' quiz.id %}" class="bg-secondary text-white pl-3 pr-3 align-items-center justify-content-center">Edit</a>
                                         <a href="{% url 'quiz-delete' quiz.id%}" class="bg-danger text-white pl-1 pr-1 align-items-center justify-content-center">Delete</a>
                                     
                                     </div>

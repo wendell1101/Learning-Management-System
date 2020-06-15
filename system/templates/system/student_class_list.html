@@ -3,9 +3,9 @@
 {% load crispy_forms_tags %}
 {% block content%}
     <div class="row ">
-          <div class="col-md-3 p-2 pt-3 ml-4 sidebar">
-            {% include 'crud/sidebar.html' %}
-          </div>
+          {% comment %} <div class="col-md-3 p-2 pt-3 ml-4 sidebar">
+            {% include 'system/student_sidebar.html' %}
+          </div> {% endcomment %}
           
           <div class="col-md-8">
               <h2>Classes</h2>
@@ -16,20 +16,14 @@
             {% endif %}
 
             <div class="row ">
-              <div class="col-md-3  justify-content-center">
-                <a href="{% url 'class-create'%}">
-                  <button href="" class="card bg-warning mb-3 d-flex justify-content-center align-items-center choice-box">
-                    <i class="fa fa-plus plus"></i>
-                  </button>
-                </a>
-              </div>
+             
               
-              {% if class %}
-                {% for class in class %}
+              {% if class_list %}
+                {% for class in class_list %}
                   <div class="col-md-3  justify-content-center">
-                    <a href="{% url 'class-detail' class.id%}">
+                    <a href="{% url 'student-class-detail' class.id%}">
                       <button class="card bg-warning mb-3 d-flex justify-content-center align-items-center choice-box">
-                        <span class="bottom-title">{{class.title}}</span>
+                        <span class="bottom-title">{{class}}</span>
                       </button>
                     </a>
                   </div>

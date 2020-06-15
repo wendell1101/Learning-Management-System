@@ -254,6 +254,9 @@ button{
     .class-list{
         display:block!important;
     }
+    .student-class-link{
+        display:block!important;
+    }
 } 
 /* @media(min-width:900px){
     .front-container{
