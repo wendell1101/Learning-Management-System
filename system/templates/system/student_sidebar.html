@@ -4,7 +4,7 @@
     <nav id="sidebar" class="sidebar-wrapper">
         <div class="row pl-3 pr-3">
             <div class="col-12">                
-                <form method ="POST">
+                <form method ="POST" class="reg-form"> 
                     {%csrf_token%}
                     <div class="row">
                         <div class="col">
@@ -23,12 +23,12 @@
                             {%for class in class%}
                                 <a href="{% url 'student-class-detail' class.id%}">
                                     <li class="list-group-item mb-2 bg-warning text-white">
-                                    <div class="row align-items-center">
-                                        <div class="col-6">
+                                    <div class="row align-items-center d-flex">
+                                        <div class="col"style="flex:1">
                                             <h4 class="text-white">{{class}}</h4> 
                                         </div>
-                                        <div class="col-6">
-                                            <div class="row">
+                                        <div class="col">
+                                            <div class="row"style="flex:1">
                                                 <div class="col-12">
                                                     - Professor :
                                                 </div>

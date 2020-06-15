@@ -1,3 +1,4 @@
+
 body{
     background:#f2f2f2;
     font-family: 'Poppins', sans-serif;
@@ -127,7 +128,9 @@ footer{
 /* .footer-side{
     transform: translateY(80px);
 } */
+
 .sidebar{
+    width:500px!important;
     background: #3a3f48!important;
     height:600px!important;
     box-shadow: 0px -1px 5px #282c33;
@@ -253,6 +256,7 @@ button{
     }
     .class-list{
         display:block!important;
+
     }
     .student-class-link{
         display:block!important;
@@ -261,7 +265,13 @@ button{
         margin-right:100px!important;
         z-index:10;
     }
+    .enroll-form{
+        display:block!important;
+    }
 } 
+@media(min-width:600px){
+  
+}
 /* @media(min-width:900px){
     .front-container{
         grid-md
