@@ -31,11 +31,11 @@
                             <ul class="list-group">
                                 {%for quiz in quiz%}
                                     <li class="list-group-item mb-2 mr-2">
-                                        <div class="row">
-                                            <div class="col">
+                                        <div class="row  d-flex">
+                                            <div class="col"style="flex:2">
                                                 {{quiz}} 
                                             </div>
-                                            <div class="col-4">                      
+                                            <div class="col"style="flex:1; flex-wrap:no-wrap">                      
                                                 {%if quiz.useranswer_set.all%}                                                   
                                                     <a href="{% url 'show-results' quiz.id%}" class="bg-success text-white pl-2 pr-2">View Result</a>
                                                 {%else%}

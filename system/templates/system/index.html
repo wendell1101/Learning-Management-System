@@ -63,12 +63,12 @@
                         </div>
                         <div class="col-3">
                             
-                            <li class="nav-item dropdown mr-5"style="list-style:none">
+                            <li class="nav-item dropdown mr-5 "style="list-style:none">
                               {%if user == post.author%}
-                              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                              <a class="nav-link dropdown-toggle " href="#" id="navbardrop" data-toggle="dropdown">
                                 <i class="fa fa-ellipsis-h text-secondary" id="post-option" style="cursor:pointer"></i>
                               </a>
-                              <div class="dropdown-menu">
+                              <div class="dropdown-menu post-options">
                                 <a class="dropdown-item border-bottom" href="{% url 'update-post' post.id%}">Edit</a>
                                 <a class="dropdown-item " href="{% url 'delete-post' post.id%}">Delete</a>                             
                               </div>                             
