@@ -35,14 +35,19 @@
                                             <div class="col"style="flex:2">
                                                 {{quiz}} 
                                             </div>
-                                            <div class="col"style="flex:1; flex-wrap:no-wrap">                      
-                                                {%if quiz.useranswer_set.all%}                                                   
+                                            <div class="col"style="flex:1; flex-wrap:no-wrap">   
+                                                {% comment %} {% firstof quiz.useranswer_set.all as variable %}
+                                                {{variable}} {% endcomment %}
+                                               
+                                                
+                                                {% if quiz in in_useranswer%}                                                   
                                                     <a href="{% url 'show-results' quiz.id%}" class="bg-success text-white pl-2 pr-2">View Result</a>
                                                 {%else%}
                                                     <a href="{% url 'take-quiz' quiz.id%}" class="bg-warning text-white pl-2 pr-2">
                                                         Take Quiz
                                                     </a>
-                                                {%endif%} 
+                                                {%endif%}
+                                             
 
                                             </div>
                                         </div>

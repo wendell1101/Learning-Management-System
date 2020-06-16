@@ -69,12 +69,6 @@ def student_class_list(request):
 
 
 
-
-
-
-
-
-
 def landing_page(request):
  
     return render(request,'system/landing_page.html')
@@ -87,10 +81,16 @@ def student_class_detail(request,class_id):
     user = request.user
     student_list = classname.student.all()
     is_taken = UserAnswer.objects.filter(user = request.user.id)
-    for item in is_taken:
-        print(item.user)
+    # for item in is_taken:
+    #     print(item.user)
     # print(is_taken)
-    
+    in_useranswer = []
+    for quiz in quiz_list:
+        quiz_done = quiz.useranswer_set.filter(user = request.user).filter(quiz = quiz)       
+        for item in quiz_done:
+            in_useranswer.append(item.quiz)
+        print(in_useranswer)
+   
     stud_list = []
     for key,student in enumerate(student_list,start=1):
         stud_list.append((key,student))
@@ -100,6 +100,8 @@ def student_class_detail(request,class_id):
         'quiz':quiz_list,
         'student':stud_list,        
         'user':user, 
+        'in_useranswer':in_useranswer,       
+        
     }
     return render(request,'system/student_class_detail.html',context)
 
