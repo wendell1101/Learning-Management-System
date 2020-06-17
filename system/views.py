@@ -3,7 +3,7 @@ from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from crud.models import *
-from django.db import transaction
+from django.db import IntegrityError, transaction
 from django.core.exceptions import PermissionDenied, SuspiciousOperation
 from users.forms import ClassCode
 from django.urls import reverse
@@ -107,6 +107,7 @@ def student_class_detail(request,class_id):
 
 #student take quiz
 @login_required
+@transaction.atomic
 def take_quiz(request, quiz_id):
     quiz = Quiz.objects.get(id = quiz_id)
     classname = ClassName.objects.get(quiz = quiz)
@@ -129,20 +130,25 @@ def take_quiz(request, quiz_id):
                     raise SuspiciousOperation('Answer is not valid for this question')
                 
                 
-                # if quiz in user_answer:
-                #     user_answer.update(
-                #         user = request.user,
-                #         question=question,
-                #         answer_id = answer_id,
-                #         quiz = quiz
-                #     )
-                # else:
-                user_answer = UserAnswer.objects.create(
-                    user = request.user,
-                    question=question,
-                    answer_id = answer_id,
-                    quiz = quiz
+                try:
+                    with transaction.atomic():
+                        # generate_relationships()
+                        user_answer = UserAnswer.objects.create(
+                        user = request.user,
+                        question=question,
+                        answer_id = answer_id,
+                        quiz = quiz
+                    )
+                except IntegrityError:
+                        user_answer = UserAnswer.objects.update(
+                        user = request.user,
+                        question=question,
+                        answer_id = answer_id,
+                        quiz = quiz
                 )
+
+                    
+                
         return redirect(reverse('show-results',args=(quiz.id,)))  
     
     question_list = []
