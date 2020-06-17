@@ -128,8 +128,8 @@ def take_quiz(request, quiz_id):
                 if answer_id not in question.choice_set.values_list('id',flat=True):
                     raise SuspiciousOperation('Answer is not valid for this question')
                 
-                useranswer = UserAnswer.objects.filter(question = question).filter(answer_id = answer_id).filter(user = request.user).exists()
-                if useranswer:
+                user_answer = UserAnswer.objects.filter(question = question).filter(answer_id = answer_id).filter(user = request.user)
+                if user_answer:
                     user_answer.user = request.user,
                     user_answer.question = question,
                     user_answer.answer_id = answer_id,
