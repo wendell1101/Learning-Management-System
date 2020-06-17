@@ -112,7 +112,8 @@ def take_quiz(request, quiz_id):
     classname = ClassName.objects.get(quiz = quiz)
     question = Question.objects.filter(quiz = quiz)
     student = request.user
-  
+    
+    print(UserAnswer.objects.all())
     if request.method == 'POST':
         with transaction.atomic():
             UserAnswer.objects.filter(user=request.user,
@@ -126,6 +127,16 @@ def take_quiz(request, quiz_id):
                 answer_id = int(request.POST.get(key))
                 if answer_id not in question.choice_set.values_list('id',flat=True):
                     raise SuspiciousOperation('Answer is not valid for this question')
+                
+                
+                # if quiz in user_answer:
+                #     user_answer.update(
+                #         user = request.user,
+                #         question=question,
+                #         answer_id = answer_id,
+                #         quiz = quiz
+                #     )
+                # else:
                 user_answer = UserAnswer.objects.create(
                     user = request.user,
                     question=question,

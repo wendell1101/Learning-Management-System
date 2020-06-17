@@ -47,8 +47,8 @@ class UserAnswer(models.Model):
     quiz = models.ForeignKey(Quiz,on_delete = models.CASCADE, default = '')
  
 
-    class Meta:
-        unique_together = ['question','answer']
+    # class Meta:
+    #     unique_together = ['question','answer']
         
     def __str__(self):
         return f'{self.question.text}-{self.answer.text}'
