@@ -41,7 +41,7 @@ class Choice(models.Model):
 
 
 class UserAnswer(models.Model):
-    question = models.ForeignKey(Question, on_delete = models.CASCADE)
+    question = models.ForeignKey(Question, related_name='question',on_delete = models.CASCADE)
     answer = models.ForeignKey(Choice, on_delete = models.CASCADE,verbose_name='',related_name='answer', default='')
     user = models.ForeignKey(User, on_delete = models.CASCADE)
     quiz = models.ForeignKey(Quiz,on_delete = models.CASCADE, default = '')
