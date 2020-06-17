@@ -130,18 +130,18 @@ def take_quiz(request, quiz_id):
                 
                 useranswer = UserAnswer.objects.filter(question = question).filter(answer_id = answer_id).filter(user = request.user)
                 if useranswer:
-                    user_answer = UserAnswer.objects.update(
-                    user = request.user,
-                    question=question,
-                    answer_id = answer_id,
-                    quiz = quiz
+                    user_answer = UserAnswer.objects.set(
+                        user = request.user,
+                        question=question,
+                        answer_id = answer_id,
+                        quiz = quiz
                     )
                 else:
                     user_answer = UserAnswer.objects.create(
-                    user = request.user,
-                    question=question,
-                    answer_id = answer_id,
-                    quiz = quiz
+                        user = request.user,
+                        question=question,
+                        answer_id = answer_id,
+                        quiz = quiz
                     )
                    
 
