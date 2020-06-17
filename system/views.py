@@ -107,7 +107,6 @@ def student_class_detail(request,class_id):
 
 #student take quiz
 @login_required
-@transaction.atomic
 def take_quiz(request, quiz_id):
     quiz = Quiz.objects.get(id = quiz_id)
     classname = ClassName.objects.get(quiz = quiz)
@@ -129,23 +128,22 @@ def take_quiz(request, quiz_id):
                 if answer_id not in question.choice_set.values_list('id',flat=True):
                     raise SuspiciousOperation('Answer is not valid for this question')
                 
-                
-                try:
-                    with transaction.atomic():
-                        # generate_relationships()
-                        user_answer = UserAnswer.objects.create(
-                        user = request.user,
-                        question=question,
-                        answer_id = answer_id,
-                        quiz = quiz
+                useranswer = UserAnswer.objects.filter(question = question).filter(answer_id = answer_id).filter(user = request.user)
+                if useranswer:
+                    user_answer = UserAnswer.objects.update(
+                    user = request.user,
+                    question=question,
+                    answer_id = answer_id,
+                    quiz = quiz
                     )
-                except IntegrityError:
-                        user_answer = UserAnswer.objects.update(
-                        user = request.user,
-                        question=question,
-                        answer_id = answer_id,
-                        quiz = quiz
-                )
+                else:
+                    user_answer = UserAnswer.objects.create(
+                    user = request.user,
+                    question=question,
+                    answer_id = answer_id,
+                    quiz = quiz
+                    )
+                   
 
                     
                 
