@@ -224,6 +224,9 @@ button{
 .class-link{
     display:none;
 }
+.table tr:nth-child(odd){
+    background: #b0b5b9 !important;
+}
 /*media queries*/
 @media(max-width:800px){
     .sidebar{

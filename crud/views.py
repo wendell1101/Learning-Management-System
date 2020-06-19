@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.crypto import get_random_string
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .models import UserAnswer,ClassName,Question,Quiz,Choice
+from .models import UserAnswer,ClassName,Question,Quiz,Choice,QuizResult
 from .models import UserAnswer as AnswerList
 from .forms import ClassForm,QuizForm,QuestionForm,UserAnswer , AnnouncementForm, ChoiceForm
 from system.views import calculate_score
@@ -204,21 +204,20 @@ def quiz_list(request,class_id):
 
 def quiz_results(request,quiz_id):
     quiz = Quiz.objects.get(id = quiz_id)
-    useranswer = AnswerList.objects.filter(quiz = quiz)
+    useranswer = quiz.useranswer_set.filter(quiz = quiz)
+    questions = Question.objects.filter(quiz=quiz)
+    result = QuizResult.objects.filter(quiz = quiz)
+    useranswer = []
+    for item in enumerate(result,start=1):
+        useranswer.append(item)
+    print(useranswer)
+  
     
-
     
-    score_list = calculate_score(request.user, quiz)
-    score = score_list['score']                
-    total_score = score_list['total_score']                
-    percent = score_list['percent']   
- 
     context={
         'quiz':quiz,
-        'score':score,
-        'total_score':total_score,
-        'percent':percent,
-        'useranswer':useranswer,
+        'result':useranswer,
+        
     }
     return render(request,'crud/quiz_results.html',context)
 def quiz_detail(request,quiz_id):

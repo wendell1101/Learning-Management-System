@@ -16,26 +16,29 @@
                 {% endfor %}
             {% endif %}
         
-        {% if useranswer %}
-            <table class="table">
+        {% if result %}
+            <table class="table text-center">
                 <tr class="border">                    
-                    <th class="border">Classname</th>
+                   
+                    <th class="border">No.</th>
                     <th class="border">Student</th>
-                    <th class="border">Quiz</th>
+                    
                     <th class="border">Score</th>
+                    <th class="border">Percentage</th>                
                     <th class="border">Status</th>
                 </tr>
-                {%for answer in useranswer%}
-                    <tr class="border">
-                        <td class="border">{{quiz.classname}}</td>
-                        <td class="border text-capitalize">{{answer.user.first_name}} {{answer.user.last_name}}</td>
-                        <td class="border">{{quiz}}</td>
-                        <td class="border">{{score}} / {{total_score}}</td>
-                        {%if percent >= 50%}
+                {%for key,result in result%}
+                    <tr class="border">  
+                        <td style="width:10%">{{key}}.</td>                      
+                        <td class="border text-capitalize">{{result.user.first_name}} {{result.user.last_name}}</td>                        
+                        <td class="border">{{result.score}} / {{result.total_score}}</td>
+                        <td class="border">{{result.percent}}%</td>
+                        {%if result.status == True%}
                             <td class="border text-success">passed</td>
                         {%else%}
                             <td class="border text-danger">failed</td>
                         {%endif%}
+
                     </tr>                  
                 {%endfor%}
             </table>

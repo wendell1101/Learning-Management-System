@@ -1,12 +1,10 @@
 from django.contrib import admin
-from .models import ClassName, Quiz, Question,Announcement,Choice,UserAnswer
+from .models import ClassName, Quiz, Question,Announcement,Choice,UserAnswer,QuizResult
 
 
 admin.site.register(ClassName)
 
-# admin.site.register(Choice)
 admin.site.register(Quiz)
-# admin.site.register(Quiz)
 
 
 
@@ -32,6 +30,7 @@ class Question(admin.ModelAdmin):
 
 admin.site.register(Announcement)
 admin.site.register(UserAnswer)
+admin.site.register(QuizResult)
 
 
 # admin.site.register(Quiz, QuizAdmin)

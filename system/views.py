@@ -128,6 +128,7 @@ def take_quiz(request, quiz_id):
                 if answer_id not in question.choice_set.values_list('id',flat=True):
                     raise SuspiciousOperation('Answer is not valid for this question')
                 
+               
                 user_answer = UserAnswer.objects.filter(question = question).filter(answer_id = answer_id).filter(user = request.user)
                 if user_answer:
                     user_answer.user = request.user,
@@ -142,10 +143,8 @@ def take_quiz(request, quiz_id):
                         answer_id = answer_id,
                         quiz = quiz
                     )
+             
                    
-
-                    
-                
         return redirect(reverse('show-results',args=(quiz.id,)))  
     
     question_list = []
@@ -172,14 +171,37 @@ def calculate_score(user, quiz):
     percent = round((correct_answers.count() / questions.count()) * 100,2)
     score = correct_answers.count()
     total_score = len(questions)
-    if percent >= 70:
+    
+    if percent >= 50:
         passed = True
-    passed = False
+    else:
+        passed = False
+    print(passed)
     score_list = {
         'score':score,
         'total_score':total_score,
         'percent':percent
     }
+    result = QuizResult.objects.filter(quiz = quiz).filter(user=user)
+    if result:
+        result.quiz = quiz,
+        result.user = user,
+        result.score = score,
+        result.total_score = total_score,
+        result.percent = percent,
+        result.status = passed
+        result.save()
+    else:
+        quiz_result = QuizResult.objects.create(
+                        quiz = quiz,
+                        user = user,
+                        score = score,
+                        total_score = total_score,
+                        percent = percent,
+                        status = passed
+                )
+        quiz_result.save()
+
     # return f'{score} / {total_score} - {percent} %'
     return score_list
 @login_required

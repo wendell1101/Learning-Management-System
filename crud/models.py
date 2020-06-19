@@ -53,6 +53,17 @@ class UserAnswer(models.Model):
     def __str__(self):
         return f'{self.question.text}-{self.answer.text}'
 
+class QuizResult(models.Model):
+    quiz = models.ForeignKey(Quiz,on_delete = models.CASCADE,null = True)
+    user = models.ForeignKey(User, on_delete = models.CASCADE,null = True)
+    score = models.IntegerField(null = True)
+    total_score = models.IntegerField(null = True)
+    percent = models.DecimalField(max_digits=19,decimal_places = 2,null = True)
+    status = models.BooleanField(null = True)
+    
+
+    def __str__(self):
+        return f'{self.quiz} - {self.user}'
 
 
 class Announcement(models.Model):
