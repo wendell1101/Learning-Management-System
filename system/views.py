@@ -190,7 +190,7 @@ def calculate_score(user, quiz):
         result.total_score = total_score,
         result.percent = percent,
         result.status = passed
-        result.save()
+        result.update()
     else:
         quiz_result = QuizResult.objects.create(
                         quiz = quiz,
