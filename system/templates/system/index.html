@@ -31,11 +31,11 @@
         <div class="col">
           <form method ="POST" class="mt-1 mb-2 enroll-form"style="display:none">
             {%csrf_token%}
-            <div class="row">
-                <div class="col">
+            <div class="row d-flex">
+                <div class="col"style="flex:3">
                     <input type="text" name="code" class="form-control" placeholder="class code" required>
                 </div>
-                <div class="col-3">
+                <div class="col"style="flex:1">
                     <button class="btn btn-warning text-white btn-md"style="width:80px!important" type="submit">Enroll</button>
                 </div>
             </div>
