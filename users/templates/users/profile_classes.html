@@ -1,23 +1,9 @@
 <div class="row">
 {% if user.is_authenticated %}
-    {%if user.is_staff or user.is_superuser %}
-    {%else%}
+   
     <div class="col">
-        <div class="row  bg-dark  p-2">
-            <div class="col d-flex align-items-center">
-                <h1 class="text-white">My Class</h1>   
-            </div>
-            <div class="col">
-                <form method="POST">
-                    {%csrf_token%}
-                    <div class="form-group">
-                        <h3 class="text-white">Enroll to other class:</h3> 
-                        <input type="text" name="" placeholder = "Enter classcode here" class="form-control">
-                    </div>
-                    
-                </form>
-            </div>
-        </div>
+      
+        <h1>Classes</h1>
         {% if class %}
                 <div class="row  mt-3" >
             {% for class in class %}
@@ -31,9 +17,9 @@
             {%endfor%}
                 </div>
         {%else%}
-            <h1 class="text-muted text-center">No Class Available Yet</h1>
+            <h4 class="text-muted text-center">No Class Available Yet</h3>
         {%endif%}
-    {%endif%}
+    
 {%endif%}        
     
         

@@ -240,6 +240,7 @@ button{
     }
 }
 @media(max-width:768px){
+ 
     .post-image{
         width:100%!important;
         height:300px!important;
@@ -271,6 +272,10 @@ button{
     .enroll-form{
         display:block!important;
     }
+    #create-post-btn{
+        width:100%!important;
+    }
+    
 } 
 @media(min-width:600px){
   

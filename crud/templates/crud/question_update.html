@@ -1,5 +1,6 @@
 {% extends 'system/base.html' %}
 {% load static %}
+{%load widget_tweaks%}
 {% load crispy_forms_tags %}
 {% block content%}
     <div class="row ">  
@@ -16,7 +17,8 @@
             {% endif %}
             <form method="POST">
                 {%csrf_token%}
-                {{form_question}}           
+                
+                {{form_question|crispy}}              
                <button type="submit" class="text-white bg-warning pl-1 pr-1 align-items-center justify-content-center">Update</button>
                 <button class=" text-white bg-secondary pl-2 pr-2 
                     align-items-center justify-content-center"><a href="{% url 'quiz-detail' quiz.id %}"class="text-white" >Cancel</a></button>

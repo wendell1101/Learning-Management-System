@@ -1,11 +1,12 @@
 {% extends 'system/base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
+{% load widget_tweaks%}
 
 {% block content%}
-
-  <div class="row">
-    <div class="col-md-3 p-2 pt-3 ml-4 sidebar">
+    
+  <div class="row pl-2">
+    <div class="col-md-3  pt-2 pl-2 sidebar"style="display:block!important;height:650px!important ">
       {% if user.is_authenticated%}
        
         
@@ -16,27 +17,40 @@
                      <img src="{{user.profile.profile_image.url}}">
                 </div>
             </div>
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
                 {%csrf_token%}
-                
-               
+                {% for field in u_form.hidden_fields %}
+                    <div class="fieldWrapper">
+                        {{ field.errors }}
+                        {{ field.label_tag }} {{ field }}
+                    </div>
+                {% endfor %}
                 <div class="col mt-4">
                     <div class="row">
                         <div class="col">
                             <div class="row mb-2">
                                 <div class="col-3 mr-2">
+                                       Bio: 
+                                </div>
+                                <div class="col">
+                                    <span style="text-transform:uppercase"> {% render_field p_form.bio class="form-control"%} </span>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-3 mr-2">
                                        Firstname: 
                                 </div>
                                 <div class="col">
-                                    <span style="text-transform:uppercase"> {{form.first_name}} </span>
+                                    <span style="text-transform:uppercase"> {% render_field u_form.first_name class="form-control"%} </span>
                                 </div>
                             </div>
+                        
                             <div class="row mb-2">
                                 <div class="col-3 mr-2">
                                       Lastname: 
                                 </div>
                                 <div class="col">
-                                   <span style="text-transform:uppercase">{{form.last_name}}</span>
+                                   <span style="text-transform:uppercase">{% render_field u_form.last_name class="form-control"%}</span>
                                 </div>
                             </div>
                         </div>
@@ -47,7 +61,7 @@
                             <span>Username: </span>  
                         </div>
                         <div class="col">
-                            <p class=" ml-2 text-white">{{form.username}}</p>
+                            <p class=" ml-2 text-white">{% render_field u_form.username class="form-control"%}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -55,7 +69,17 @@
                             <span>Email: </span>  
                         </div>
                         <div class="col">
-                            <p class=" ml-2 text-white">{{form.email}}</p>
+                            <p class=" ml-2 text-white">{% render_field u_form.email class="form-control"%}</p>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-3">     
+                            <span>Profile: </span>  
+                        </div>
+                        <div class="col">
+                            <p class=" ml-2 text-white">{{p_form.profile_image}}</p>
                         </div>
                         
                     </div>
@@ -68,14 +92,14 @@
                     </div>
                 </div>
             </div>
-        </nav>
+    </nav>
               
       {%endif%}
     </div>
       
 
  
-     <div class="col-md-8 ml-3 bg-white">
+     <div class="col-md-8  bg-white">
       {% include 'users/profile_classes.html'%}
     </div>
   </div>

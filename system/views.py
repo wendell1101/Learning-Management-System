@@ -19,6 +19,11 @@ def index(request):
     user_classname = ClassName.objects.filter(student=student)  
     class_author = ClassName.objects.filter(author = request.user)
     student_class = ClassName.objects.filter(student = request.user)
+    class_code_list = []
+    class_list = ClassName.objects.all()
+    for item in class_list:
+        class_code_list.append(item.class_code)
+    print(class_code_list)
     user_allowed = []
     for user in user_classname:
         user_allowed.append(user.student.all())
@@ -34,14 +39,14 @@ def index(request):
     
     if request.method == 'POST':
         class_code = request.POST.get('code') 
-        classname = ClassName.objects.get(class_code = class_code)
-        if classname:
+        if class_code in class_code_list:
             student = request.user
+            classname = ClassName.objects.get(class_code = class_code)
             classname.student.add(student)
             messages.success(request,f'You are now enrolled in class {classname}')
             return redirect('index')
         else:
-            messages.error(request,f'Class code is invalid')
+            messages.error(request,f'Invalid class code. Please try again')
             return redirect('index')
 
     context = {
@@ -59,9 +64,10 @@ def index(request):
 def student_class_list(request):
     student = request.user
     class_list = ClassName.objects.filter(student = request.user)
-   
+    
     # print(class_list)
     student_classes = student.classname_set.all()
+    
     context={
         'class_list':class_list,
     }

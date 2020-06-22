@@ -9,5 +9,5 @@ urlpatterns = [
     path('logout/',auth_view.LogoutView.as_view(template_name='users/logout.html'), name="logout"),
     #student profile
     path('profile',views.profile, name="profile"),
-    path('profile-update/<int:user_id>/',views.profile_update, name="profile-update"),
+    path('profile-update/<str:username>',views.profile_update, name="profile-update"),
 ]

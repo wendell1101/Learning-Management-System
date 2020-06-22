@@ -6,12 +6,18 @@
             <form method="POST" class="register-form">
             <h3>Register As Teacher</h3>
                 {% csrf_token %}
-                <fieldset>
-                    <legend>
-                        <!-- <h3>Register Now!</h3> -->
-                    </legend>
-                </fieldset>
-                    {{form | crispy}}
+                <div class="row">
+                    <div class="col">
+                        {{ form.first_name|as_crispy_field }}
+                    </div>
+                    <div class="col">
+                        {{ form.last_name|as_crispy_field }}
+                    </div>
+                </div>
+                    {{form.username | as_crispy_field}}
+                    {{form.email | as_crispy_field}}
+                    {{form.password1 | as_crispy_field}}
+                    {{form.password2 | as_crispy_field}}
                 <span class="text-muted" >Already a user?</span> <a href="{% url 'login' %}">Login Here</a> 
                 <button type="submit" class="btn btn-primary mt-3 form-control">Register</button>
             </form>  

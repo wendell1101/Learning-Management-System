@@ -9,12 +9,14 @@
 
         <div class="col-md-8 section-container">
            <h2> {{quiz.text}}</h2>
+           
             {%if messages%}
                 {%for message in messages%}
                     <p class="alert alert-success">{{message}}</p>
                 {% endfor %}
             {% endif %}
            <p>Questions</p>
+           <small class=" bg-secondary pl-2 pr-2  text-white">Note: Please click the choices to view choice details</small>
             
             {%if question_list %}
                 {%for key,question in question_list%}
@@ -28,22 +30,26 @@
                                             {%if choice.correct%}
                                             <li><a href="{% url 'choice-detail' choice.id%}" class="text-success">{{choice}}</a></li>
                                             {%else%}
-                                                <li><a href="{% url 'choice-detail' choice.id%}">{{choice}}</a></li>
+                                                <li><a class="col-6"href="{% url 'choice-detail' choice.id%}">{{choice}}</a>
+                                                </li>
+                                                
+                                               
                                             {%endif%}
                                             
                                         {%endfor%} 
                                     </ol>
-                                    <a href="{% url 'create-choice' question.id%}" 
-                                        class="text-white mr-3 bg-secondary pl-1 pr-1 align-items-center justify-content-center">
-                                        Add Choice
-                                    </a>
+                                    
                                                                                        
                                 </div>
                                 <div class="col">
                                     <a href="{% url 'question-update' question.id%}"
                                     class="bg-warning text-white pl-3 pr-3 align-items-center justify-content-center">Edit</a>
-                                <a href="{% url 'question-delete' question.id%}" 
-                                    class="bg-danger text-white pl-1 pr-1 align-items-center justify-content-center">Delete</a>
+                                    <a href="{% url 'question-delete' question.id%}" 
+                                        class="bg-danger text-white pl-1 pr-1 align-items-center justify-content-center">Delete</a>
+                                    <a href="{% url 'create-choice' question.id%}" 
+                                        class="text-white mr-3 bg-secondary pl-1 pr-1 align-items-center justify-content-center">
+                                        Add Choice
+                                    </a>
                                 </div>
                                
                             </div>

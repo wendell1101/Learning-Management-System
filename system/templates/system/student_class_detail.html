@@ -17,15 +17,24 @@
                     
                     
                 </div>
+                 {%if messages%}
+                {%for message in messages%}
+                    {%if message.tags == 'success'%}
+                        <p class="alert alert-success">{{message}}</p>
+                    {%else%}
+                        <p class="alert alert-danger">{{message}}</p>
+                    {%endif%}
+                {% endfor %}
+            {% endif %}
             </div>
-            
+           
             <div class="col-12">
                 <a href="{% url 'index' %}" 
                     class="text-white bg-secondary pl-2 pr-2 align-items-center justify-content-center">
                     Back
                 </a>
                 <div class="row mt-2">
-                    <div class="col">
+                    <div class="col-md-6 col-sm-12">
                         <h4>Quizzes</h4>
                         {%if quiz %}
                             <ul class="list-group">
@@ -64,7 +73,7 @@
                             
                         {%endif%}
                     </div>
-                    <div class="col">
+                    <div class="col-md-6 col-sm-12">
                         <h4>Students Enrolled</h4>
                         {%for key,student in student%}
                             <ul class="list-group">

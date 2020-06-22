@@ -12,17 +12,7 @@
                             <li class="nav-item "><a class="nav-link">Teacher</a></li>
                             <li class="nav-item"><a href="{% url 'administration'%}" class="nav-link class-link">Classes</a></li> 
                         {% else %}
-                            <form method ="POST" class="mt-1 mb-2 enroll-form"style="display:none">
-                                {%csrf_token%}
-                                <div class="row">
-                                    <div class="col">
-                                        <input type="text" name="code" class="form-control" placeholder="class code" required>
-                                    </div>
-                                    <div class="col-3">
-                                        <button class="btn btn-warning text-white btn-md"style="width:80px!important" type="submit">Enroll</button>
-                                    </div>
-                                </div>
-                            </form>
+                            
                            
                             
                             <li class="nav-item "><a class="nav-link">Student</a></li>

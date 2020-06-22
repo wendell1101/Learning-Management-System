@@ -12,24 +12,39 @@
             {% include 'system/student_sidebar.html'%}      
         {%endif%}
       {%endif%}
-    </div>
+    </div> 
     <div class="col-md-9 col-sm-12  col-xs-12 home-container">        
       <div class="row">
         <div class="col mt-2">
-          {% if messages%}
-            {%for message in messages%}
-                {%if message.tags == 'error'%}
-                    <p class="alert alert-danger align-items-center" style="height:20px">{{message}}</p>
-                {%else%}
-                    <p class="alert alert-success d-flex align-items-center jutify-content-center" style="height:20px!important">{{message}}</p>
-                {%endif%}
-            {%endfor%}
-          {%endif%}   
+            {%if messages%}
+                {%for message in messages%}
+                    {%if message.tags == 'success'%}
+                        <p class="alert alert-success d-flex align-items-center"style="height:20px!important ">{{message}}</p>
+                    {%else%}
+                        <p class="alert alert-danger d-flex align-items-center"style="height:20px!important">{{message}}</p>
+                    {%endif%}
+                {% endfor %}
+            {% endif %}
         </div>
       </div>
       <div class="row">
         <div class="col">
-          <a href="{% url 'create-post' %}" class="btn btn-dark text-white mb-3 border">
+          <form method ="POST" class="mt-1 mb-2 enroll-form"style="display:none">
+            {%csrf_token%}
+            <div class="row">
+                <div class="col">
+                    <input type="text" name="code" class="form-control" placeholder="class code" required>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-warning text-white btn-md"style="width:80px!important" type="submit">Enroll</button>
+                </div>
+            </div>
+        </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <a href="{% url 'create-post' %}" class="btn btn-dark text-white mb-3 border" id="create-post-btn">
             Create Post
           </a>
         </div>

@@ -1,6 +1,7 @@
 {% extends 'system/base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
+{%load widget_tweaks%}
 {% block content%}
     <div class="row ">  
         <div class="col-md-3 mr-3 mb-3 p-2 pt-3 ml-4 sidebar">
@@ -17,12 +18,12 @@
             <form method="POST">
                 {%csrf_token%}
                 <span>Question:<span>       
-                    <div class="row">
-                        <div class="col-md-4">
+                    <div class="row form-group" >
+                        <div class="col-md-6 col-sm-12">
                             <h5 class="text-dark"><b class="text-capitalize">{{question}}</b></h5>     
-                            {{form.text}}
+                            {% render_field form.text class="form-control"%}
                         </div>
-                        <div class="col">
+                        <div class="col-md-6 col-sm-12">
                             <h5 class="text-dark"><b class="text-capitalize">Correct</b></h5>
                             <p class="ml-4">{{form.correct}}</p>
                         </div>

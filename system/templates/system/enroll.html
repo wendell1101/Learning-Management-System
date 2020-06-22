@@ -1,0 +1,17 @@
+class_code_list = []
+    class_list = ClassName.objects.all()
+    for item in class_list:
+        class_code_list.append(item.class_code)
+    
+
+if request.method == 'POST':
+        class_code = request.POST.get('code') 
+        if class_code in class_code_list:
+            student = request.user
+            classname = ClassName.objects.get(class_code = class_code)
+            classname.student.add(student)
+            messages.success(request,f'You are now enrolled in class {classname}')
+            return redirect('index')
+        else:
+            messages.error(request,f'Invalid class code. Please try again')
+            return redirect('index')
