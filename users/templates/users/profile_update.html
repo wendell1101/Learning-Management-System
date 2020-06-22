@@ -6,7 +6,7 @@
 {% block content%}
     
   <div class="row pl-2">
-    <div class="col-md-3  pt-2 pl-2 sidebar"style="display:block!important;height:650px!important ">
+    <div class="col-md-3  pt-2 pl-2 sidebar"style="display:block!important;min-height:650px!important ">
       {% if user.is_authenticated%}
        
         
@@ -17,7 +17,7 @@
                      <img src="{{user.profile.profile_image.url}}">
                 </div>
             </div>
-            <form method="POST" enctype="multipart/form-data">
+            <form method="POST" enctype="multipart/form-data"style="width:100%!important;overflow-x:hidden!important">
                 {%csrf_token%}
                 {% for field in u_form.hidden_fields %}
                     <div class="fieldWrapper">
@@ -25,10 +25,10 @@
                         {{ field.label_tag }} {{ field }}
                     </div>
                 {% endfor %}
-                <div class="col mt-4">
+                <div class="col mt-4"style="width:100%!important">
                     <div class="row">
-                        <div class="col">
-                            <div class="row mb-2">
+                        <div class="col"style="width:100%!important">
+                            <div class="row mb-2 ">
                                 <div class="col-3 mr-2">
                                        Bio: 
                                 </div>
