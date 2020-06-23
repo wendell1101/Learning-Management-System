@@ -4,38 +4,52 @@
 {% block content %}
  
    
-    <div class="row mt-2 border-bottom mb-3 pb-5 justify-content-center container">
-        <div class="col-12 justify-content-center mb-3">
-            {% include 'system/skitter.html'%}  
-        </div>
-        <div class="col-md-6 front-container"> 
-            <div class="img-container">
-                <img src="{% static 'system/images/educ_1.jpg'%}" alt="">
+    <div class="row mt-2 border-bottom  ">
+        <div class="col-12 mb-3">
+            <div class="row bg-white text-dark p-2 pb-5 mb-3"style="background:#acafaf!important">
+                <div class="col-md-9 mb-3 bg-secondary p-2"style="background:#acafaf!important">
+                    {% include 'system/skitter.html'%}  
+                </div>
+                <div class="col-md-3">
+                    <h4 class="text-dark mt-2">Patience. </h4>
+                    <h3 class="text-dark"> Goal.</h3>
+                    <h2 class="text-dark"> Hardwork. </h2>
+                    <img src="{%static 'system/images/teacher.png'%}" style="width:350px!important;margin-top:70px!important">
             </div>
+           
             
         </div>
-        <div class="col-md-6  mb-3 d-flex align-items-center">
-            <div class="row">
-                <div class="col-md-12 mb-2 border-bottom">
-                    <h1>Let's Get Started</h1>
-                    <h2 class="lead">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae obcaecati, dolores adipisci quas fugit iste soluta eligendi amet veritatis veniam.
-                        
-                    </h2>
+        <div class="row">
+            <div class="col-md-6  front-container"> 
+                <div class="img-container">
+                    <img src="{% static 'system/images/educ_1.jpg'%}" alt="">
                 </div>
-                <div class="col-md-12 mb-2 ">
-                     <span class="text-info font-weight-normal lead ">Join Our Community</span>
+                
+            </div>
+            <div class="col-md-6  mb-3 d-flex align-items-center">
+                <div class="row">
+                    <div class="col-md-12 mb-2 border-bottom">
+                        <h1>Let's Get Started</h1>
+                        <h2 class="lead">
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae obcaecati, dolores adipisci quas fugit iste soluta eligendi amet veritatis veniam.
+                            
+                        </h2>
+                    </div>
+                    <div class="col-md-12 mb-2 ">
+                         <span class="text-info font-weight-normal lead ">Join Our Community</span>
+                    </div>
+                    <div class="col-md-12 d-flex justify-content-center">
+                        <a href="{% url 'teacher-register'%}"><button class="btn btn-warning text-white mr-2">Teacher</button></a>
+                        <a href="{% url 'student-register'%}"><button class="btn btn-secondary ml-2">Student</button></a>               
+                    </div>
+                    <div class="col-md-12 justify-content-center">
+                                  
+                    </div>
+                   
                 </div>
-                <div class="col-md-12 d-flex justify-content-center">
-                    <a href="{% url 'teacher-register'%}"><button class="btn btn-warning text-white mr-2">Teacher</button></a>
-                    <a href="{% url 'student-register'%}"><button class="btn btn-secondary ml-2">Student</button></a>               
-                </div>
-                <div class="col-md-12 justify-content-center">
-                              
-                </div>
-               
             </div>
         </div>
+        
     </div>
  
     <div class="row">
@@ -58,6 +72,7 @@
         </div>
         
         
+    </div>
     </div>
   
      
