@@ -27,21 +27,24 @@
             {% endif %}
         </div>
       </div>
-      <div class="row">
-        <div class="col">
-          <form method ="POST" class="mt-1 mb-2 enroll-form"style="display:none">
-            {%csrf_token%}
-            <div class="row d-flex">
-                <div class="col"style="flex:3">
-                    <input type="text" name="code" class="form-control" placeholder="class code" required>
+      {%if not user.is_staff%}
+        <div class="row">
+          <div class="col">
+            <form method ="POST" class="mt-1 mb-2 enroll-form"style="display:none">
+              {%csrf_token%}
+                <div class="row d-flex">
+                    <div class="col"style="flex:3">
+                        <input type="text" name="code" class="form-control" placeholder="class code" required>
+                    </div>
+                    <div class="col"style="flex:1">
+                        <button class="btn btn-warning text-white btn-md"style="width:80px!important" type="submit">Enroll</button>
+                    </div>
                 </div>
-                <div class="col"style="flex:1">
-                    <button class="btn btn-warning text-white btn-md"style="width:80px!important" type="submit">Enroll</button>
-                </div>
-            </div>
-        </form>
+            </form>
+          </div>
         </div>
-      </div>
+      {%endif%}
+      
       <div class="row">
         <div class="col">
           <a href="{% url 'create-post' %}" class="btn btn-dark text-white mb-3 border" id="create-post-btn">

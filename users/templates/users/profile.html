@@ -6,9 +6,9 @@
   {%if messages%}
         {%for message in messages%}
             {%if message.tags == 'success'%}
-                <p class="alert alert-success mt-2 d-flex align-items-center"style="height:20px!important">{{message}}</p>
+                <p class="alert alert-success mt-2 d-flex align-items-center"style="min-height:20px!important">{{message}}</p>
             {%else%}
-                <p class="alert alert-danger mt-2 d-flex align-items-center"style="height:20px!important">{{message}}</p>
+                <p class="alert alert-danger mt-2 d-flex align-items-center"style="min-height:20px!important">{{message}}</p>
             {%endif%}
         {% endfor %}
       {% endif %}

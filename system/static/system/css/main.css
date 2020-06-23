@@ -254,6 +254,7 @@ button{
     }
     .sidebar{
         display:none;
+        padding-left:none!important;
         /* width:600px!important */
     }
     .enroll-form{
