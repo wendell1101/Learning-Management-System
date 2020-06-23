@@ -16,7 +16,7 @@ header{
 }
 /*sticky navbar*/
 #navbar{
-
+    overflow-x:hidden!important;
     z-index:1000;
 }
 .sticky {
@@ -322,6 +322,13 @@ button{
     #create-post-btn{
         width:100%!important;
     }
+    /*stick nav*/
+    .sticky {
+       display:none!important;
+    }
+    .sticky + .content {
+        padding-top: 0;
+      }
     
 } 
 @media(min-width:600px){
