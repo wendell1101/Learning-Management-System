@@ -12,23 +12,25 @@
             {%endif%}
         {% endfor %}
       {% endif %}
-    {% if user.is_staff%}
-  <div class="row pl-2 ">
-    <div class="col-md-3 pt-2 pl-2 sidebar"style="display:block!important">
-      {% if user.is_authenticated%}
-       {% include 'system/sidebar_profile.html'%}  
-      {%endif%}
-    </div>
+
+  <div class="row pl-2">
+  {% if user.is_staff%}
+   
+      <div class="col-md-3 pt-2 pl-2 sidebar"style="display:block!important;height:680px!important">
+        {% include 'system/sidebar_profile.html'%}  
+      </div>
       
 
- 
-    <div class="col-md-8 bg-white">
-      
-     
-    {%else%}
-      {% include 'users/profile_classes.html'%}
-    {%endif%}
+  {%else%}
+    <div class="col-md-3 pt-2 sidebar"style="display:block!important;height:680px!important">
+      {% include 'system/sidebar_profile.html'%}  
     </div>
+    <div class="col-md-8 bg-white">
+      {% include 'users/profile_classes.html'%}
+ 
+  {%endif%}
+</div>
+   
   </div>
   
 
