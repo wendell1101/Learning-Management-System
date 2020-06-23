@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '5o(7c&&qq%sh1h!5s%$vcyy#ct^2@=st#2n#sff+#&doa!e-v^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 
 ALLOWED_HOSTS = ['future-academy.herokuapp.com',]
