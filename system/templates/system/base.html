@@ -17,6 +17,11 @@
     <link rel="stylesheet" href="{% static 'system/css/footer.css' %}">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--slider-->
+    <link type="text/css" href="{%static 'system/css/skitter.css'%}" media="all" rel="stylesheet" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="{% static 'system/js/jquery.easing.1.3.js' %}"></script>
+    <script type="text/javascript" src="{% static 'system/js/jquery.skitter.min.js'%}"></script>
     <!-- XDSoft DateTimePicker -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" integrity="sha256-DOS9W6NR+NFe1fUhEE0PGKY/fubbUCnOfTje2JMDw3Y=" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha256-FEqEelWI3WouFOo2VWP/uJfs1y8KJ++FLh2Lbqc8SJk=" crossorigin="anonymous"></script>
@@ -28,7 +33,9 @@
  
 <body>    
     {% include 'system/navbar.html'%}   
+  
     <a href="#" id="scroll" style="display: none;"><span></span></a>
+    
     {% if user.is_authenticated %}
         <!-- <div class="container-fluid"> -->
         <div class="p-2"style="overflow-x:hidden!important">
@@ -40,10 +47,14 @@
         <!-- <input id="datetimepicker" type="text"> -->
 
   <script>
+  $(document).ready(function() {
+    $(".skitter-large").skitter();
+  });
     $(function () {
       $("#datetimepicker").datetimepicker();
     });
   </script>
+  
  
     <script src="{% static 'system/js/main.js' %}"></script>
  

@@ -2,14 +2,12 @@
 {% load static %}
 
 {% block content %}
-    {% comment %} <div class="row ">
-        <div class="col-md-12 p-3 border-radius mb-2 bg-light d-flex align-items-center">
-            <h3>Grab your chance to win the new LENOVO T450</h3>
-            <a href="#" class="ml-3">More Details</a>
+ 
+   
+    <div class="row mt-2 border-bottom mb-3 pb-5 justify-content-center container">
+        <div class="col-12 justify-content-center mb-3">
+            {% include 'system/skitter.html'%}  
         </div>
-    </div> {% endcomment %}
-    <div class="row mt-2 border-bottom mb-3 pb-5">
-        
         <div class="col-md-6 front-container"> 
             <div class="img-container">
                 <img src="{% static 'system/images/educ_1.jpg'%}" alt="">
@@ -53,9 +51,9 @@
              </div>
             
         </div>
-        <div class="col-md-6"> 
+        <div class="col-md-6 front-container"> 
              <div class="img-container">
-                <img src="{% static 'system/images/educ_2.jpg'%}" alt="">
+                <img src="{% static 'system/images/educ_2.jpg'%}">
             </div>
         </div>
         
