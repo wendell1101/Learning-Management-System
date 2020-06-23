@@ -16,7 +16,7 @@ header{
 }
 /*sticky navbar*/
 #navbar{
-    overflow-x:hidden!important;
+    /* overflow-x:hidden!important; */
     z-index:1000;
 }
 .sticky {
