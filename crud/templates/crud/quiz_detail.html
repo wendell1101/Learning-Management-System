@@ -28,7 +28,7 @@
                                     <ol type="a">
                                         {% for choice in question.choice_set.all%}
                                             {%if choice.correct%}
-                                            <li><a href="{% url 'choice-detail' choice.id%}" class="text-success">{{choice}}</a></li>
+                                            <li><a href="{% url 'choice-detail' choice.id%}" class="col-6 text-success">{{choice}}</a></li>
                                             {%else%}
                                                 <li><a class="col-6"href="{% url 'choice-detail' choice.id%}">{{choice}}</a>
                                                 </li>
