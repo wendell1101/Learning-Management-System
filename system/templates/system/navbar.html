@@ -29,7 +29,7 @@
                                 Account
                             </a>
                             <div class="dropdown-menu drop">
-                                <a class="nav-item dropdown-item list" href="{%url 'profile'%}">View Profile</a>
+                                <a class="dropdown-item list" href="{%url 'profile'%}">View Profile</a>
                                 {% if user.is_authenticated == user.is_superuser%}
                                     <a class="dropdown-item list" href="admin/">Go To Admin</a>
                                 {% endif %}
