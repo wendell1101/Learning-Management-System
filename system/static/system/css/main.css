@@ -299,7 +299,7 @@ button{
     }
     .sidebar{
         display:none;
-        padding-left:none!important;
+        padding-left:0!important;
         /* width:600px!important */
     }
     .enroll-form{

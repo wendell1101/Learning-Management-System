@@ -2,8 +2,8 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block content%}
-    <div class="row ">  
-        <div class="col-md-3 mr-3 mb-3 p-2 pt-3 ml-4 sidebar">
+    <div class="row pl-2">  
+        <div class="col-md-3  pt-3 pl-2 sidebar">
             {% include 'crud/sidebar.html' %}
         </div>
 
@@ -15,44 +15,22 @@
             <span class="text-muted">Questions</span><br>
         {%endif%}
         {%if question %}
-        {%for question in question%}
-                <div class="row ">
-               
-                <div class="col">
-                    <a href="#" class="text-muted">*{{question.text}}</a><br> 
-                </div>
-                    
-                    </div>
-                    
-                    <div class="row">
-                {% if question.choice_one and question.choice_two%}
+            <ol type="1">
+                {%for question in question%}
+                        <div class="row ">
                             <div class="col">
-                                <span class="text-muted"> a.) {{question.choice_one}}<br></span>
-                                <span class="text-muted">b.) {{question.choice_two}}<br></span>                                 
+                                <li class="text-muted">*{{question.text}}</li>
+                                <ol type="a">
+                                    {% for choice in question.choice_set.all%}
+                                        <li class="text-muted">{{choice}}</li>
+                                    {%endfor%}
+                                </ol>
+                            
                             </div>
+                        </div>
                 
-                        <div class="col">
-                            {% if question.choice_three %}
-                                <span class="text-muted">c.) {{question.choice_three}}</span><br>
-                            {%endif%}                       
-                            {% if question.choice_four%}
-                                <span class="text-muted">d.) {{question.choice_four}}</span>
-                            {%endif%}                       
-                        
-                        </div>
-                        
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <span class="text-muted">answer: ({{question.correct_answer}})</span> 
-                        </div>
-                    </div>
-            {%else%}
-                <span class="text-muted">No Choices Yet</span>
-            {% endif %}
-           
-               
-        {%endfor%}
+                {%endfor%}
+            </ol>
         {%else%}
             No Questions Yet
         {%endif%} 

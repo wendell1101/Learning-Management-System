@@ -3,8 +3,8 @@
 {% load crispy_forms_tags %}
 {%load widget_tweaks%}
 {% block content%}
-    <div class="row ">  
-        <div class="col-md-3 mr-3 mb-3 p-2 pt-3 ml-4 sidebar">
+    <div class="row pl-2">  
+        <div class="col-md-3  pt-3 pl-2 sidebar">
             {% include 'crud/sidebar.html' %}
         </div>
 
@@ -20,7 +20,7 @@
                 <span>Question:<span>       
                     <div class="row form-group" >
                         <div class="col-md-6 col-sm-12">
-                            <h5 class="text-dark"><b class="text-capitalize">{{question}}</b></h5>     
+                            <h5 class="text-dark"><b>{{question}}</b></h5>     
                             {% render_field form.text class="form-control"%}
                         </div>
                         <div class="col-md-6 col-sm-12">
