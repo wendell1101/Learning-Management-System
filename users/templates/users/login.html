@@ -1,5 +1,7 @@
 {% extends 'system/base.html' %}
 {% load crispy_forms_tags %}
+{% load socialaccount %}
+{% providers_media_js %}
 {% block content%}
     <div class="row justify-content-center">
         <div class="col-md-6">
@@ -9,7 +11,7 @@
                 {% endfor %}
             {% endif %}
             <form method="POST" class="register-form">
-            <a href="#" class="btn btn-info">Login with Google</a>
+            <a href="{% provider_login_url 'google' %}" class="btn btn-info">Login with Google</a>
                 {% csrf_token %}
                 <fieldset class="form-group">
                     <legend class="border-bottom">

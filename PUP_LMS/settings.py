@@ -47,6 +47,15 @@ INSTALLED_APPS = [
     'crispy_forms',
     'widget_tweaks',
 
+
+    'django.contrib.sites', 
+   
+ 
+    'allauth',  
+    'allauth.account',   
+    'allauth.socialaccount',  
+    'allauth.socialaccount.providers.google',   
+
 ]
 
 MIDDLEWARE = [
@@ -142,6 +151,17 @@ LOGIN_URL = 'landing-page'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
 
-django_heroku.settings(locals())
 
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SITE_ID = 1
+LOGIN_REDIRECT_URL = 'index'
+
+
+
+django_heroku.settings(locals())
 
