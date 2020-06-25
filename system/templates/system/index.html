@@ -27,7 +27,7 @@
             {% endif %}
         </div>
       </div>
-      {%if not user.is_staff%}
+      {% comment %} {%if not user.is_staff%} {% endcomment %}
         <div class="row">
           <div class="col">
             <form method ="POST" class="mt-1 mb-2 enroll-form"style="display:none">
@@ -43,7 +43,7 @@
             </form>
           </div>
         </div>
-      {%endif%}
+      {% comment %} {%endif%} {% endcomment %}
       
       <div class="row">
         <div class="col">
@@ -120,7 +120,6 @@
                 </div>
                      
               {%endif%}
-              
             {% endfor %}
           {%else%}
               <h2 class="text-muted text-center">No Post Yet</h2>
