@@ -18,7 +18,25 @@
                 </fieldset>
                     {{form | crispy}}
                 <div class="form-group">
-                    <span class="text-muted" >Not yet registered?</span> <a href="#">Register Here</a> 
+                    <div class="row d-flex">
+                        <div class="col"style="flex:1">
+                            <span class="text-muted" >Not yet registered?</span> 
+                        </div>
+                        <div class="col"style="flex:1">
+                            <div class="dropdown show">
+                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Register Here
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="{% url 'teacher-register' %}">Teacher</a>
+                                    <a class="dropdown-item" href="{% url 'student-register' %}">Student</a>
+                                  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                  
                     <button type="submit" class="btn btn-primary mt-3 form-control">Login</button>
                 </div>
               
