@@ -15,7 +15,7 @@
                         <div class="col-11" >
                             {%csrf_token%}
                             {%if is_class_author%}                            
-                                <select name="classname" id="id_classname" class="mt-2 mb-2">
+                                <select name="classname" id="id_classname" class="mt-2 mb-2" required>
                                     <option value="">--Choose Class--</option>
                                     {%for classname in is_class_author%}
                                         <option value="{{classname.id}}">{{classname}}</option>
