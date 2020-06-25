@@ -11,12 +11,20 @@
                 {% endfor %}
             {% endif %}
             <form method="POST" class="register-form">
-            <a href="{% provider_login_url 'google' %}" class="btn btn-info">Login with Google</a>
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+
+
+            
+         
                 {% csrf_token %}
-                <fieldset class="form-group">
-                    <legend class="border-bottom">
+                <fieldset class="form-group ">
+                    <legend class="">
                         <h3>Login Now</h3>
                     </legend>
+                     <a href="{% provider_login_url 'google' %}" 
+                     class="border-info form-control text-center  text-info p-2">
+                         <i class=" bg-dark fab fa-google "></i>   Login with Google
+                    </a>
                 </fieldset>
                     {{form | crispy}}
                 <div class="form-group">
