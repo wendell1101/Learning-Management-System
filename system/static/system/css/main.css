@@ -26,7 +26,7 @@ header{
 }
 .sticky + .content {
     padding-top: 60px;
-}
+  }
 /*back to top button*/
 #scroll {
     position:fixed;
@@ -339,6 +339,9 @@ button{
     }
     .profile-container{
         padding:5px!important;
+    }
+    .main{
+        padding-left:0!important;
     }
     
 } 

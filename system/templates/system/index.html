@@ -13,15 +13,15 @@
         {%endif%}
       {%endif%}
     </div> 
-    <div class="col-md-9 col-sm-12  col-xs-12 home-container">        
+    <div class="col-md-9 col-sm-12  col-xs-12 home-container"style="overflow-x:hidden">        
       <div class="row">
         <div class="col mt-2">
             {%if messages%}
                 {%for message in messages%}
                     {%if message.tags == 'success'%}
-                        <p class="alert alert-success d-flex align-items-center"style="height:20px!important ">{{message}}</p>
+                        <p class="alert alert-success d-flex align-items-center"style="min-height:20px!important ">{{message}}</p>
                     {%else%}
-                        <p class="alert alert-danger d-flex align-items-center"style="height:20px!important">{{message}}</p>
+                        <p class="alert alert-danger d-flex align-items-center"style="min-height:20px!important">{{message}}</p>
                     {%endif%}
                 {% endfor %}
             {% endif %}
@@ -55,7 +55,7 @@
       </div>
       
       
-      <div class="row">
+      <div class="row"style="overflow-x:hidden!important">
         <div class="col-sm-12">  
                
           {%if posts%}
@@ -82,7 +82,7 @@
                         </div>
                         <div class="col-3"style="flex:1">
                             
-                            <li class="nav-item dropdown mr-5 "style="list-style:none;margin-right:90px!important">
+                            <li class="nav-item dropdown mr-5 "style="list-style:none;">
                               {%if user == post.author%}
                               <a class="nav-link dropdown-toggle " href="#" id="navbardrop" data-toggle="dropdown">
                                 <i class="fa fa-ellipsis-h text-secondary" id="post-option" style="cursor:pointer"></i>

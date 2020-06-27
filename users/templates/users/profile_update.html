@@ -15,7 +15,7 @@
       {% endif %}
 
   <div class=" container"style="min-height:50vh">
-      <div class="row bg-white p-4">
+      <div class="row bg-white  p-4 profile-container">
         <div class="col-md-3 col-sm-12 justify-content-center d-flex" style="width:100%!important;">
             <img src="{{user.profile.profile_image.url}}" class="rounded-circle border"
             style="width:150px; height:150px">
@@ -29,71 +29,40 @@
                         {{ field.label_tag }} {{ field }}
                     </div>
                 {% endfor %}
-                <div class="col mt-4"style="width:100%!important">
-                    <div class="row">
-                        <div class="col"style="width:100%!important">
-                            <div class="row mb-2 ">
-                                <div class="col-3 mr-2">
-                                       Bio: 
-                                </div>
-                                <div class="col">
-                                    <span style="text-transform:uppercase"> {% render_field p_form.bio class="form-control"%} </span>
-                                </div>
-                            </div>
-                            <div class="row mb-2">
-                                <div class="col-3 mr-2">
-                                       Firstname: 
-                                </div>
-                                <div class="col">
-                                    <span style="text-transform:uppercase"> {% render_field u_form.first_name class="form-control"%} </span>
-                                </div>
-                            </div>
-                        
-                            <div class="row mb-2">
-                                <div class="col-3 mr-2">
-                                      Lastname: 
-                                </div>
-                                <div class="col">
-                                   <span style="text-transform:uppercase">{% render_field u_form.last_name class="form-control"%}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                  
-                    <div class="row">
-                        <div class="col-3">
-                            <span>Username: </span>  
-                        </div>
-                        <div class="col">
-                            <p class=" ml-2 text-white">{% render_field u_form.username class="form-control"%}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-3">     
-                            <span>Email: </span>  
-                        </div>
-                        <div class="col">
-                            <p class=" ml-2 text-white">{% render_field u_form.email class="form-control"%}</p>
-                        </div>
-                        
-                    </div>
+                
+                      
+                <div class="form-group">
+                        <label>Bio: </label> 
+                    {% render_field p_form.bio class="form-control"%}
+                </div>
+                <div class="form-group">
+                        <label>Firstname: </label> 
+                    {% render_field u_form.first_name class="form-control"%}
+                </div>
+                <div class="form-group">
+                        <label>Lastname: </label> 
+                    {% render_field u_form.last_name class="form-control"%}
+                </div>
+                <div class="form-group">
+                    <label>Username: </label> 
+                    {% render_field u_form.username class="form-control"%}
+                </div>
+                <div class="form-group">
+                        <label>Email: </label> 
+                    {% render_field u_form.email class="form-control"%}
+                </div>
+                <div class="form-group">
+                        <label>Profile: </label> 
+                    {% render_field p_form.profile_image %}
+                </div>
                     
-                    <div class="row">
-                        <div class="col-3">     
-                            <span>Profile: </span>  
-                        </div>
-                        <div class="col">
-                            <p class=" ml-2 text-white">{{p_form.profile_image}}</p>
-                        </div>
-                        
+                <div class="row">
+                    <div class="col">
+                        <button type="submit" class="btn btn-warning text-white">Save</button>
+                        <a href="{% url 'profile'%}" class="btn btn-secondary">Cancel</a>
                     </div>
-                    <div class="row">
-                        <div class="col">
-                            <button type="submit" class="btn btn-warning text-white">Save</button>
-                            <a href="{% url 'profile'%}" class="btn btn-secondary">Cancel</a>
-                        </div>
-                    </div>
-            </form>
+                </div>
+        </form>
         </div>
         
       </div>

@@ -3,16 +3,25 @@
 {% load crispy_forms_tags %}
 
 {% block content%}
+  <div class="container">
+    <div class="row">
+      <div class="col">
+          {%if messages%}
+            {%for message in messages%}
+                {%if message.tags == 'success'%}
+                    <p class="alert alert-success mt-2 d-flex align-items-center"style="min-height:20px!important">{{message}}</p>
+                {%else%}
+                    <p class="alert alert-danger mt-2 d-flex align-items-center"style="min-height:20px!important">{{message}}</p>
+                {%endif%}
+            {% endfor %}
+          {% endif %}
+      </div>
+      
+    </div>
+   
+  </div>
   <div class=" container"style="min-height:50vh;overflow-x:hidden">
-    {%if messages%}
-      {%for message in messages%}
-          {%if message.tags == 'success'%}
-              <p class="alert alert-success mt-2 d-flex align-items-center"style="min-height:20px!important">{{message}}</p>
-          {%else%}
-              <p class="alert alert-danger mt-2 d-flex align-items-center"style="min-height:20px!important">{{message}}</p>
-          {%endif%}
-      {% endfor %}
-    {% endif %}
+ 
       <div class="row bg-white p-4 profile-container">
         <div class="col-md-3 col-sm-12 justify-content-center d-flex" style="width:100%!important;">
             <img src="{{user.profile.profile_image.url}}" class="rounded-circle border"
