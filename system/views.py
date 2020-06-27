@@ -61,6 +61,7 @@ def index(request):
     }
     return render(request,'system/index.html',context)
    
+@login_required
 def student_class_list(request):
     student = request.user
     class_list = ClassName.objects.filter(student = request.user)

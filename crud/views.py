@@ -25,7 +25,7 @@ def administration(request):
 
 
 
-
+@login_required
 def class_create(request):
     form = ClassForm()    
    
@@ -49,7 +49,7 @@ def class_create(request):
     return render(request,'crud/class_create.html',context)
     
 
-
+@login_required
 def class_detail(request,class_id):
     form = ClassName.objects.get(id = class_id)
     student = form.student.all()
@@ -61,7 +61,8 @@ def class_detail(request,class_id):
         'student':student_list
     }
     return render(request,'crud/class_detail.html',context)
-   
+
+@login_required   
 def class_delete(request,class_id):
     form = ClassName.objects.get(id = class_id)
     if request.method == 'POST':
@@ -74,6 +75,7 @@ def class_delete(request,class_id):
     return render(request,'crud/class_confirm_delete.html',context)
 
 
+@login_required
 def class_update(request,class_id):
     course = ClassName.objects.get(id = class_id)
     form = ClassForm()
@@ -91,6 +93,7 @@ def class_update(request,class_id):
     return render(request,'crud/class_update.html',context)
 
 #student
+@login_required
 def student_delete(request,student_id):
     classname = ClassName.objects.get(student = student_id)
    
@@ -112,6 +115,7 @@ def student_delete(request,student_id):
 
 # Quiz
 
+@login_required
 def create_quiz(request, class_id):
     classname = ClassName.objects.get(id = class_id)
     quiz_list = Quiz.objects.filter(classname = classname)   
@@ -138,6 +142,7 @@ def create_quiz(request, class_id):
     }
     return render(request,'crud/create_quiz.html',context)
 
+@login_required
 def create_question(request,quiz_id):
     quiz = Quiz.objects.get(id = quiz_id)
     class_id = quiz.classname.id
@@ -165,6 +170,7 @@ def create_question(request,quiz_id):
     }
     return render(request,'crud/create_question.html',context)
 
+@login_required
 def create_choice(request,question_id):
     question = Question.objects.get(id = question_id)
     quiz = Quiz.objects.get(question = question)
@@ -189,6 +195,7 @@ def create_choice(request,question_id):
 
 #Quiz LIst
 
+@login_required
 def quiz_list(request,class_id):
     classname = ClassName.objects.get(id = class_id)
     quiz_list = Quiz.objects.filter(classname = classname)
@@ -202,6 +209,7 @@ def quiz_list(request,class_id):
 
 #quiz detail
 
+@login_required
 def quiz_results(request,quiz_id):
     quiz = Quiz.objects.get(id = quiz_id)
     useranswer = quiz.useranswer_set.filter(quiz = quiz)
@@ -219,7 +227,10 @@ def quiz_results(request,quiz_id):
         'result':useranswer,
         
     }
+ 
     return render(request,'crud/quiz_results.html',context)
+
+@login_required
 def quiz_detail(request,quiz_id):
     quiz = Quiz.objects.get(id = quiz_id)
     classname = ClassName.objects.get(quiz=quiz)
@@ -236,6 +247,7 @@ def quiz_detail(request,quiz_id):
     return render(request,'crud/quiz_detail.html',context)
 
 #update quiz
+@login_required
 def quiz_update(request,quiz_id):
     quiz = Quiz.objects.get(id = quiz_id)
     classname = ClassName.objects.get(quiz=quiz)
@@ -259,6 +271,7 @@ def quiz_update(request,quiz_id):
     return render(request,'crud/quiz_update.html',context)
 
 #delete quiz
+@login_required
 def quiz_delete(request,quiz_id):
     quiz = Quiz.objects.get(id = quiz_id)
     question = Question.objects.filter(quiz=quiz)
@@ -280,6 +293,7 @@ def quiz_delete(request,quiz_id):
     return render(request,'crud/quiz_delete.html',context)
 
 #update question
+@login_required
 def question_update(request,question_id):
     question = Question.objects.get(id = question_id)
     choice = Choice.objects.filter(question = question)
@@ -305,6 +319,7 @@ def question_update(request,question_id):
     return render(request,'crud/question_update.html',context)
 
 #delete question
+@login_required
 def question_delete(request,question_id):
     question = Question.objects.get(id = question_id)
     quiz = Quiz.objects.get(question = question)
@@ -323,6 +338,7 @@ def question_delete(request,question_id):
 
 
 #choice detail
+@login_required
 def choice_detail(request,choice_id):
     choice = Choice.objects.get(id = choice_id)
     quiz = Quiz.objects.get(question__choice = choice)
@@ -336,6 +352,7 @@ def choice_detail(request,choice_id):
     return render(request,'crud/choice_detail.html',context)
 
 #choice delete
+@login_required
 def choice_delete(request,choice_id):
     choice = Choice.objects.get(id = choice_id)
     quiz = Quiz.objects.get(question__choice = choice)
@@ -353,6 +370,7 @@ def choice_delete(request,choice_id):
 
 
 #update choice
+@login_required
 def choice_update(request,choice_id):
     choice = Choice.objects.get(id = choice_id)
     quiz = Quiz.objects.get(question__choice = choice)
@@ -374,6 +392,8 @@ def choice_update(request,choice_id):
     }
     return render(request,'crud/choice_update.html',context)
 #announcement
+
+@login_required
 def announcement_create(request,class_id):
     classname = ClassName.objects.get(id = class_id)
     form = AnnouncementForm()

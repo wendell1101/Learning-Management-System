@@ -3,33 +3,44 @@
 {% load crispy_forms_tags %}
 
 {% block content%}
-  {%if messages%}
-        {%for message in messages%}
-            {%if message.tags == 'success'%}
-                <p class="alert alert-success mt-2 d-flex align-items-center"style="min-height:20px!important">{{message}}</p>
+  <div class=" container"style="min-height:50vh;overflow-x:hidden">
+    {%if messages%}
+      {%for message in messages%}
+          {%if message.tags == 'success'%}
+              <p class="alert alert-success mt-2 d-flex align-items-center"style="min-height:20px!important">{{message}}</p>
+          {%else%}
+              <p class="alert alert-danger mt-2 d-flex align-items-center"style="min-height:20px!important">{{message}}</p>
+          {%endif%}
+      {% endfor %}
+    {% endif %}
+      <div class="row bg-white p-4 profile-container">
+        <div class="col-md-3 col-sm-12 justify-content-center d-flex" style="width:100%!important;">
+            <img src="{{user.profile.profile_image.url}}" class="rounded-circle border"
+            style="width:150px; height:150px">
+        </div>
+        <div class="col-md-9 col-sm-12">
+          <div class="row align-items-center">
+              <h2 class="col-md-8 col-sm-12 text-dark text-capitalize">
+                {{user.first_name}} {{user.last_name}} 
+              </h2>
+              <a class="col-md-4 col-sm-12 "href="{% url 'profile-update' user%}" style="font-size:1rem;">
+                Edit Information
+              </a>
+          </div>
+          
+            {% if user.is_staff%}
+              <p class="text-muted">Teacher</p>
             {%else%}
-                <p class="alert alert-danger mt-2 d-flex align-items-center"style="min-height:20px!important">{{message}}</p>
+              <p class="text-muted">Student</p>
             {%endif%}
-        {% endfor %}
-      {% endif %}
-
-  <div class="row pl-2">
-  {% if user.is_staff%}
-   
-      <div class="col-md-3 pt-2 pl-2 sidebar"style="display:block!important;height:680px!important">
-        {% include 'system/sidebar_profile.html'%}  
+            {% if user.profile.bio%}
+              <span class="text-muted">Bio: </span> <p class="text-lead">{{user.profile.bio}}</p>
+            {%endif%}
+            <span class="text-muted">Email: </span> <p class="text-lead">{{user.email}}</p>
+        </div>
+        
       </div>
-      
 
-  {%else%}
-    <div class="col-md-3 pt-2 sidebar"style="display:block!important;height:680px!important">
-      {% include 'system/sidebar_profile.html'%}  
-    </div>
-    <div class="col-md-8 bg-white">
-      {% include 'users/profile_classes.html'%}
- 
-  {%endif%}
-</div>
    
   </div>
   
