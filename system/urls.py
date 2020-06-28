@@ -9,6 +9,8 @@ urlpatterns = [
     path('take-quiz/<int:quiz_id>/', views.take_quiz, name="take-quiz"),
   
     path('quiz/<int:quiz_id>/results', views.show_results, name="show-results"),
+    path('announcement-create/', views.announcement_create, name="create-announcement"),
+    path('announcement-list/', views.announcement_list, name="announcement-list"),
     
 
 ]

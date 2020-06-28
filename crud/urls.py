@@ -10,9 +10,7 @@ urlpatterns = [
     path('class-update/<int:class_id>/',views.class_update, name="class-update"),
     path('class-create/',views.class_create, name="class-create"),
     path('administration/',views.administration, name="administration"),
-    #announcement
-    path('announcement-create/<int:class_id>/',views.announcement_create, name="announcement-create"),
-   
+ 
    
     #create quiz
     path('create-quiz/<int:class_id>/',views.create_quiz, name='create-quiz'),

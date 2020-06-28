@@ -8,7 +8,8 @@ from django.core.exceptions import PermissionDenied, SuspiciousOperation
 from users.forms import ClassCode
 from django.urls import reverse
 from system.forms import UserAnswerForm
-from crud.forms import ChoiceForm
+from crud.forms import ChoiceForm,AnnouncementForm
+from crud.models import Announcement
 from posts.models import Post
 from posts.forms import PostForm
 # from posts.models import Post
@@ -242,4 +243,35 @@ def show_results(request, quiz_id):
     return render(request,'system/show_results.html',context)
 
 
+def announcement_create(request):
+    all_classes = ClassName.objects.filter(author = request.user)
+    form = AnnouncementForm()
+    # print(form.author)
+    if request.method == 'POST':
+        form = AnnouncementForm(request.POST)
+        if form.is_valid():
+            form.save(commit = False)
+            form.author = request.POST.get('author')
+            form.save()
+            messages.success(request,f'A new announcement has been created')
+            return redirect('index')
+        else:
+            messages.errors(request,f'An error occured.Please try again.')
+            print(form.errors.as_data())
 
+    context={
+        'form':form,
+        'classes':all_classes,
+    }
+    return render(request,'system/announcement_create.html',context)
+
+def announcement_list(request):
+    announcements = Announcement.objects.filter(author = request.user)
+    print(announcements)
+   
+
+    context={
+        'announcements':announcements,
+    }
+    return render(request,'system/announcement_list.html',context)
+    

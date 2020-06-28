@@ -36,10 +36,21 @@ class UserAnswer(forms.ModelForm):
 
 #announcement
 class AnnouncementForm(forms.ModelForm):
-    due = forms.DateTimeField(input_formats=['%d/%m/%Y %H:%M'], required =True)
+
+    text = forms.CharField(
+       
+        widget=forms.Textarea(attrs={'placeholder':'Input details here'})
+    
+    )
+    due = forms.DateTimeField(
+        input_formats=['%Y/%d/%m %H:%M'], 
+    
+        widget = forms.TextInput(attrs={'placeholder': 'Enter Date'})
+    
+    )
     class Meta:
         model = Announcement 
-        fields = '__all__'
+        fields = ['classname','text','due','author']
     
     
         

@@ -393,24 +393,3 @@ def choice_update(request,choice_id):
     return render(request,'crud/choice_update.html',context)
 #announcement
 
-@login_required
-def announcement_create(request,class_id):
-    classname = ClassName.objects.get(id = class_id)
-    form = AnnouncementForm()
-    if request.method == 'POST':
-        print(classname)
-        form = AnnouncementForm(request.POST)
-
-        if form.is_valid():
-
-            form.save()
-            messages.success(request,f'New announcement has been created')
-            return HttpResponseRedirect(reverse('class-detail',args=[classname.id]))
-    else:
-        form = AnnouncementForm()
-    
-    context = {
-        'form':form,
-        'class':classname
-    }
-    return render(request,'crud/announcement_create.html',context)
