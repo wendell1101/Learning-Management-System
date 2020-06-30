@@ -1,0 +1,46 @@
+{% extends 'system/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+{% block content%}
+    <div class="row pl-2">  
+        <div class="col-md-3  pt-3 pl-2 sidebar">
+            {% include 'crud/sidebar.html' %}
+        </div>
+
+        <div class="col-md-8 col-sm-12 bg-white section-container">
+            {%if messages%}
+            {%for message in messages%}
+                {%if message.tags == 'success'%}
+                    <p class="alert alert-success d-flex align-items-center"style="min-height:20px!important ">{{message}}</p>
+                {%else%}
+                    <p class="alert alert-danger d-flex align-items-center"style="min-height:20px!important">{{message}}</p>
+                {%endif%}
+            {% endfor %}
+        {% endif %}
+            <h2> Are you sure you want to delete this announcement?</h2><br>
+            <h5 class="text-muted">Summary</h5>
+            
+            <div>
+                Title: {{announcement.title}}
+            </div> 
+            <div>
+                Text: {{announcement.text}}
+            </div> 
+            <div>
+                Due: {{announcement.due}}
+            </div> 
+           
+            <form method="POST">
+                {%csrf_token%}
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger text-white" data-dismiss="modal">Delete</button>
+                    <a href="{% url 'announcement-list'%}" class="btn btn-secondary" data-dismiss="modal">Cancel</a>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+    
+     
+{% endblock content%}

@@ -1,0 +1,46 @@
+{% extends 'system/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+{% block content%}
+    <div class="row pl-2">  
+        <div class="col-md-3  pt-3 pl-2 sidebar">
+            {% include 'crud/sidebar.html' %}
+        </div>
+
+        <div class="col-md-8 col-sm-12 section-container">
+            {% comment %} {%if messages%}
+                {%for message in messages%}
+                    {%if message.tags == 'success'%}
+                        <p class="alert alert-success d-flex align-items-center"style="min-height:20px!important ">{{message}}</p>
+                    {%else%}
+                        <p class="alert alert-danger d-flex align-items-center"style="min-height:20px!important">{{message}}</p>
+                    {%endif%}
+                {% endfor %}
+            {% endif %} {% endcomment %}
+            <h2>Edit Announcement</h2>
+            <form method="POST">
+                {%csrf_token%}
+               
+                {% render_field form.classname style="display:none" %}
+                <input type="hidden" name="author" value="{{request.user.id}}"required="" id="id_author"> 
+                   
+               {{form.title|as_crispy_field}}
+               {{form.text|as_crispy_field}}
+               <input type="hidden" name="author" value="{{request.user.id}}" id="id_author">
+                
+              
+             
+                Due: {%render_field form.due class="form-control"%}
+                <!-- Due : <input type="text" name="due" class="datetimeinput" required="" id="datetimepicker"> -->
+               
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-warning text-light ">Update</button>
+                    <a href="{% url 'announcement-list'%}" class="btn btn-secondary" data-dismiss="modal">Cancel</a>
+                </div>
+            </form>    
+        </div>
+    </div>
+    
+     
+{% endblock content%}

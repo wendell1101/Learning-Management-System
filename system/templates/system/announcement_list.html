@@ -20,14 +20,47 @@
         {% endif %}
             <h2> Announcements</h2>
             {%if announcements%}
-                <ul class="list-group">
-                    {%for item in announcements%}
-                        <li class="list-group-item"><a href="#">{{item}}</a></li>
-                    {%endfor%}
-                </ul>
+            <ul class="list-group">
+                <li class="list-group-item mb-2">
+                    <div class="row">
+                        <div class="col">
+                            
+                            <ol type="1">
+                                {% for item in announcements%}
+                                <div class="row mb-2">
+                                    <div class="col-md-6 text-info">
+                                        <li><a href="{% url 'announcement-detail' item.id%}">{{item.title}} - {{item.classname}}</a></li>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a href="{% url 'announcement-detail' item.id%}" class="bg-warning text-white ml-2 pl-3 pr-3 align-items-center justify-content-center">
+                                            Detail
+                                        </a>      
+                                        <a href="{% url 'update-announcement' item.id %}" class="bg-secondary text-white ml-2  pl-3 pr-3 align-items-center justify-content-center" data-dismiss="modal">
+                                            Edit
+                                        </a>
+                                        <a href="{% url 'delete-announcement' item.id %}" class="bg-danger text-white ml-2 pl-3 pr-3 align-items-center justify-content-center" data-dismiss="modal">
+                                             Delete
+                                        </a>                    
+                                    </div>
+                                     
+                                </div>
+                                    
+                                   
+                                {%endfor%} 
+                            </ol>                                 
+                        </div>
+                        
+                       
+                    </div>
+                    
+                    
+                   
+                    
+                </li>
+            </ul>
                 
             {%else%}
-                <h3 class=text-center>No Announcement Yet</h3>
+                <h5 class=text-center>No Announcement Yet</h5>
             {%endif%}
             <div class="modal-footer">
                 

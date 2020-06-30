@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.http import HttpResponseRedirect
 from crud.models import *
 from django.db import IntegrityError, transaction
 from django.core.exceptions import PermissionDenied, SuspiciousOperation
@@ -22,6 +23,11 @@ def index(request):
     student_class = ClassName.objects.filter(student = request.user)
     class_code_list = []
     class_list = ClassName.objects.all()
+    student_class = []
+    for key,item in enumerate(user_classname,start=1):
+        student_class.append(item)
+        if key ==3:
+            break
     for item in class_list:
         class_code_list.append(item.class_code)
     print(class_code_list)
@@ -36,7 +42,13 @@ def index(request):
     page_obj = paginator.get_page(page_number)
  
     announcement = Announcement.objects.filter(classname__student = student)
-    print(user_classname)
+    events = []
+    for key,item in enumerate(announcement,start=1):
+        events.append(item)
+        if key == 2:
+            break
+    print(events)
+    # print(user_classname)
     
     if request.method == 'POST':
         class_code = request.POST.get('code') 
@@ -51,8 +63,9 @@ def index(request):
             return redirect('index')
 
     context = {
-        'announcement':announcement,
-        'class':user_classname,
+        'announcement':events,
+        'class':student_class,
+        'class_count':len(student_class),
         'posts':posts,
         'user_allowed':user_allowed,
         'user_classname_list':user_classname_list,
@@ -242,7 +255,7 @@ def show_results(request, quiz_id):
     }
     return render(request,'system/show_results.html',context)
 
-
+@login_required
 def announcement_create(request):
     all_classes = ClassName.objects.filter(author = request.user)
     form = AnnouncementForm()
@@ -254,10 +267,11 @@ def announcement_create(request):
             form.author = request.POST.get('author')
             form.save()
             messages.success(request,f'A new announcement has been created')
-            return redirect('index')
+            return redirect('announcement-list')
         else:
-            messages.errors(request,f'An error occured.Please try again.')
+            messages.error(request,f'An error occured.Please try again. Invalid date and time format.')
             print(form.errors.as_data())
+
 
     context={
         'form':form,
@@ -265,6 +279,7 @@ def announcement_create(request):
     }
     return render(request,'system/announcement_create.html',context)
 
+@login_required
 def announcement_list(request):
     announcements = Announcement.objects.filter(author = request.user)
     print(announcements)
@@ -274,4 +289,50 @@ def announcement_list(request):
         'announcements':announcements,
     }
     return render(request,'system/announcement_list.html',context)
+
+@login_required
+def announcement_delete(request,announcement_id):
+    announcement = Announcement.objects.get(id = announcement_id)
+    if request.method == 'POST':
+        announcement.delete()
+        messages.success(request,f'An announcement has been deleted')
+        # return HttpResponseRedirect(reverse('announcement-detail',args=[announcement.id]))
+        return redirect('announcement-list')
+
+    context={
+        'announcement':announcement,
+    }
+    return render(request,'system/announcement_delete.html',context)
+
+@login_required
+def announcement_detail(request,announcement_id):
+    announcement = Announcement.objects.get(id = announcement_id)  
+
+    context={
+        'announcement':announcement,
+    }
+    return render(request,'system/announcement_detail.html',context)
+
+@login_required
+def announcement_update(request,announcement_id):
+    announcement = Announcement.objects.get(id = announcement_id)  
+    form = AnnouncementForm(instance = announcement)
+    if request.method == 'POST':
+        form = AnnouncementForm(request.POST,instance = announcement)
+        if form.is_valid():
+            form.save(commit = False)
+            form.classname = request.POST.get('classname')
+            form.author = request.POST.get('author')
+            form.save()
+            messages.success(request,f'Announcement has been updated')
+            return redirect('announcement-list')
+        else:
+        
+            print(form.errors.as_data())
+
+    context={
+        'form':form,
+        'announcement':announcement,
+    }
+    return render(request,'system/announcement_update.html',context)
     

@@ -17,7 +17,7 @@
                 </li>
                 <li class="list-group-item mt-2">
                     <div >
-                        <a href="{% url 'class-update' class.id%}" class="btn btn-warning text-light edit-btn">Edit</a>
+                        <a href="{% url 'class-update' class.id%}" class="btn btn-secondary text-light edit-btn">Edit</a>
                         <a href="{% url 'class-delete' class.id%}" class="btn btn-danger">Delete</a>
                     </div>
                 </li>
@@ -57,8 +57,8 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <a href="{% url 'quiz-list' class.id%}" class="text-warning"> Quizzes</a> | 
-                            <a href="#" class="text-warning"> Announcement</a>
+                            <a href="{% url 'quiz-list' class.id%}" class="pt-1 pb-1 text-warning border-top border-bottom mb-2 mt-2"style="font-size:1.5rem"> Quizzes</a> 
+               
                         </div>
                     </div>
               

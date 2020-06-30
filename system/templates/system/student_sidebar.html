@@ -1,7 +1,7 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'system/css/main.css' %}">
 
-    <nav id="sidebar" class="sidebar-wrapper">
+    <nav id="sidebar" class="sidebar-wrapper"style="min-height:700px!important">
         <div class="row pl-3 pr-3">
             <div class="col-12">                
                 <form method ="POST" class="reg-form"> 
@@ -47,11 +47,19 @@
                         {%else%}
                             <span>Not Enrolled In A Class Yet</span>
                         {%endif%}
+                        {% if class_count >= 2 %}
+                            <a href="{% url 'student-class-list' %}" class="text-warning">
+                                <li class="list-group-item bg-secondary text-white border-bottom">
+                                    View All Classes
+                                 </li>
+                            </a>
+                           
+                        {%endif%}
                     </div>
                 </div>
             </div>
            
-            <div class="col-12 mt-5">
+            <div class="col-12 mt-2">
                 <h5 class="text-white">Upcoming Events<h5>
                 {% if announcement%}
                     {%for event in announcement %}
@@ -77,6 +85,7 @@
                                 </div>
                             </div>
                         </div>
+                     
                        
                     {%endfor%}
                 {%else%}

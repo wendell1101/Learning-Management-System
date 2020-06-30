@@ -43,14 +43,14 @@ class AnnouncementForm(forms.ModelForm):
     
     )
     due = forms.DateTimeField(
-        input_formats=['%Y/%d/%m %H:%M'], 
+        input_formats=['%Y-%d-%m %H:%M:%S'], 
     
         widget = forms.TextInput(attrs={'placeholder': 'Enter Date'})
     
     )
     class Meta:
         model = Announcement 
-        fields = ['classname','text','due','author']
+        fields = ['classname','title','text','due','author']
     
     
         

@@ -11,6 +11,9 @@ urlpatterns = [
     path('quiz/<int:quiz_id>/results', views.show_results, name="show-results"),
     path('announcement-create/', views.announcement_create, name="create-announcement"),
     path('announcement-list/', views.announcement_list, name="announcement-list"),
+    path('announcement-detail/<int:announcement_id>', views.announcement_detail, name="announcement-detail"),
+    path('announcement-delete/<int:announcement_id>', views.announcement_delete, name="delete-announcement"),
+    path('announcement-update/<int:announcement_id>', views.announcement_update, name="update-announcement"),
     
 
 ]
